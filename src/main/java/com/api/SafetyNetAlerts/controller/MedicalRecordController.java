@@ -1,11 +1,14 @@
 package com.api.SafetyNetAlerts.controller;
 
 
-import org.springframework.stereotype.Controller;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import org.springframework.stereotype.Controller;
 
 
 @Controller
 public class MedicalRecordController {
 
+	 private static final Logger logger = LogManager.getLogger(MedicalRecordController.class);
 }

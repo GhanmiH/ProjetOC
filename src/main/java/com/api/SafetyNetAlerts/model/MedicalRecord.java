@@ -7,8 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.api.SafetyNetAlerts.SafetyNetAlertsApplication;
+
 @Entity
 public class MedicalRecord {
+	
+	private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
