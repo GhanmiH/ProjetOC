@@ -1,49 +1,69 @@
 package com.api.SafetyNetAlerts.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.api.SafetyNetAlerts.SafetyNetAlertsApplication;
 
+@Data
 @Entity
+@Table(name = "Fire_Station")
 public class FireStation {
-	
+
 	private static final Logger logger = LogManager.getLogger(FireStation.class);
 
-	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String address;
-    private int station;
-    
-    
-    public Integer getId() {
-        return id;
-      }
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private Integer id;
 
-      public void setId(Integer id) {
-        this.id = id;
-      }
+	@Column(name = "Address")
+	private String address;
 
-      public String getAddress() {
-        return address;
-      }
+	@Column(name = "Station")
+	private int station;
 
-      public void setAddress(String address) {
-        this.address = address;
-      }
+	public FireStation(String address, int station) {
+		this.address = address;
+		this.station = station;
+	
+	}
 
-      public int getstation() {
-        return station;
-      }
+	public Integer getId() {
+		return id;
+	}
 
-      public void set(int station) {
-        this.station = station;
-      }
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getstation() {
+		return station;
+	}
+
+	public void setstation(int station) {
+		this.station = station;
+	}
+
+	@Override
+	public String toString() {
+		return "FireStation [id=" + id + ", address=" + address + ", station=" + station + "]";
+	}
+
+	
+	
 }

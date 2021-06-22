@@ -1,30 +1,60 @@
 package com.api.SafetyNetAlerts.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-
+@Data
 @Entity
+@Table (name = "Person")
 public class Person {
 
 	private static final Logger logger = LogManager.getLogger(Person.class);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private Long id;
+	
+	@Column(name = "First_name")
 	private String firstName;
+	
+	@Column(name = "Last_name")
 	private String lastName;
+	
+	@Column(name = "Address")
 	private String address;
+	
+	@Column(name = "City")
 	private String city;
+
+	@Column(name = "Zip")
 	private int zip;
+	
+	@Column(name = "Phone")
 	private String phone;
+	
+	@Column(name = "Email")
 	private String email;
+
+	public Person(Long id, String firstName, String lastName, String address, String city, int zip, String phone,
+			String email) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.zip = zip;
+		this.phone = phone;
+		this.email = email;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -81,5 +111,13 @@ public class Person {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
+	}
+
+	
 
 }

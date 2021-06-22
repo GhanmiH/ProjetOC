@@ -1,31 +1,60 @@
 package com.api.SafetyNetAlerts.model;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import javax.persistence.Table;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.api.SafetyNetAlerts.SafetyNetAlertsApplication;
 
+@Data
 @Entity
+@Table(name = "Medical_Record")
 public class MedicalRecord {
-	
+
 	private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Long id;
+	
+	@Column(name = "First_name")
 	private String firstName;
+	
+	@Column(name = "Last_name")
 	private String lastName;
-	private String birthdate;
-	private List<String> allergies;
+	
+	@Column(name = "Birthdate")
+	private Date birthdate;
+	
+	@ElementCollection
+	@Column(name = "Allergies")
+	private List <String> allergies;
+	
+	@ElementCollection
+	@Column(name = "Medications")
 	private List<String> medications;
-	private int age;
+	
+	
+	
+	public MedicalRecord(String firstName, String lastName, Date birthdate,List<String> allergies, List<String> medications, int age) {
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.birthdate=birthdate;
+		this.allergies=allergies;
+		this.medications=medications;
+		
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -43,11 +72,11 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
 
-	public String getBirthdate() {
+	public Date getBirthdate() {
 		return birthdate;
 	}
 
@@ -67,12 +96,14 @@ public class MedicalRecord {
 		this.medications = medications;
 	}
 
-	public int getAge() {
-		return age;
+	@Override
+	public String toString() {
+		return "MedicalRecord [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate="
+				+ birthdate + ", allergies=" + allergies + ", medications=" + medications + "]";
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+
+	
+	
 
 }
