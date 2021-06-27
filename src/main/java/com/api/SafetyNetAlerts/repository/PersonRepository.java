@@ -1,5 +1,7 @@
 package com.api.SafetyNetAlerts.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,7 @@ import com.api.SafetyNetAlerts.model.Person;
 //CRUD refers Create, Read, Update, Delete
 @Repository
 public interface PersonRepository  extends CrudRepository<Person, Long> {
+
 	
 	
 

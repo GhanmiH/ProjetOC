@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-@Data
+
 @Entity
 @Table(name = "Fire_Station")
 public class FireStation {
@@ -34,6 +34,9 @@ public class FireStation {
 		this.station = station;
 	
 	}
+	
+	 public FireStation() {
+	    }
 
 	public Integer getId() {
 		return id;
@@ -63,7 +66,4 @@ public class FireStation {
 	public String toString() {
 		return "FireStation [id=" + id + ", address=" + address + ", station=" + station + "]";
 	}
-
-	
-	
 }

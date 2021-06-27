@@ -1,5 +1,7 @@
 package com.api.SafetyNetAlerts.model;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +17,20 @@ import javax.persistence.Table;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-@Data
 @Entity
 @Table(name = "Medical_Record")
 public class MedicalRecord {
+
+	public MedicalRecord() {
+
+	}
 
 	private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
@@ -27,33 +38,36 @@ public class MedicalRecord {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Long id;
-	
+
 	@Column(name = "First_name")
 	private String firstName;
-	
+
 	@Column(name = "Last_name")
 	private String lastName;
-	
-	@Column(name = "Birthdate")
-	private Date birthdate;
+
+	@JsonProperty("birthdate")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	private LocalDate birthdate;
 	
 	@ElementCollection
 	@Column(name = "Allergies")
-	private List <String> allergies;
-	
+	private List<String> allergies;
+
 	@ElementCollection
 	@Column(name = "Medications")
 	private List<String> medications;
-	
-	
-	
-	public MedicalRecord(String firstName, String lastName, Date birthdate,List<String> allergies, List<String> medications, int age) {
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.birthdate=birthdate;
-		this.allergies=allergies;
-		this.medications=medications;
-		
+
+	public MedicalRecord(Long id, String firstName, String lastName, LocalDate birthdate, List<String> allergies,
+			List<String> medications) throws ParseException {
+
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthdate = birthdate;
+		this.allergies = allergies;
+		this.medications = medications;
 	}
 
 	public String getFirstName() {
@@ -72,11 +86,11 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
 
-	public Date getBirthdate() {
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
 
@@ -101,9 +115,5 @@ public class MedicalRecord {
 		return "MedicalRecord [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate="
 				+ birthdate + ", allergies=" + allergies + ", medications=" + medications + "]";
 	}
-
-
-	
-	
 
 }

@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-@Data
+
 @Entity
 @Table (name = "Person")
 public class Person {
@@ -55,6 +55,11 @@ public class Person {
 		this.phone = phone;
 		this.email = email;
 	}
+	
+	public Person() {
+	
+	}
+
 
 	public String getFirstName() {
 		return firstName;
@@ -118,6 +123,5 @@ public class Person {
 				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
 	}
 
-	
 
 }
