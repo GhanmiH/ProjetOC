@@ -31,6 +31,19 @@ public class PersonService {
 		}
 	}
 
-	
+	/**
+	 * add person
+	 *
+	 */
+	public Person addPerson(Person person) {
+
+		try {
+			personRepository.save(person);
+		} catch (Exception exception) {
+
+			return null;
+		}
+		return person;
+	}
 
 }
