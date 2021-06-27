@@ -6,6 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.PersonRepository;
@@ -45,5 +47,9 @@ public class PersonService {
 		}
 		return person;
 	}
+	
+	public void deletePerson(Person person) {
+		personRepository.removeByFirstNameAndLastName(person.getFirstName(), person.getLastName());
 
+	}
 }

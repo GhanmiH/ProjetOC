@@ -15,6 +15,8 @@ import com.api.SafetyNetAlerts.model.Person;
 @Repository
 public interface PersonRepository  extends CrudRepository<Person, Long> {
 
+	void removeByFirstNameAndLastName(String firstName, String lastName);
+
 	
 	
 
