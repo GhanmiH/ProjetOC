@@ -54,7 +54,7 @@ public class FireStation {
 		this.address = address;
 	}
 
-	public int getstation() {
+	public int getStation() {
 		return station;
 	}
 

@@ -1,5 +1,7 @@
 package com.api.SafetyNetAlerts.model;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +21,9 @@ public class Person {
 	private static final Logger logger = LogManager.getLogger(Person.class);
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id;
+	private int id;
 	
 	@Column(name = "First_name")
 	private String firstName;
@@ -44,7 +46,7 @@ public class Person {
 	@Column(name = "Email")
 	private String email;
 
-	public Person(Long id, String firstName, String lastName, String address, String city, int zip, String phone,
+	public Person(int id, String firstName, String lastName, String address, String city, int zip, String phone,
 			String email) {
 		this.id = id;
 		this.firstName = firstName;
@@ -59,7 +61,13 @@ public class Person {
 	public Person() {
 	
 	}
+	public int getid() {
+		return id;
+	}
 
+	public void setid(int id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -122,6 +130,8 @@ public class Person {
 		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
 				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
 	}
+
+	
 
 
 }
