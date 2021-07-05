@@ -113,7 +113,7 @@ public class MedicalRecordService {
 
     /**
      * delete medical record by firstName and lastName
-     * @param medicalRecords
+     * @param medicalRecord
      * @return null in case have a problem
      */
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
