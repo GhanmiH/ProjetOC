@@ -6,8 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.PersonRepository;
@@ -28,7 +26,7 @@ public class PersonService {
 		try {
 			return personRepository.findAll();
 		} catch (Exception exception) {
-			logger.error("Error while getting a list of medical records  : " + exception.getMessage() + " Stack Trace + " + exception.getStackTrace());
+			logger.error("Error while getting a list of persons : " + exception.getMessage() + " Stack Trace + " + exception.getStackTrace());
 			return null;
 		}
 	}

@@ -30,8 +30,9 @@ public class PersonController {
 
 	@GetMapping("/persons")
 	public Iterable<Person> getAllPersons() {
-
+		logger.info("req Get endpoint Person");
 		Iterable<Person> personIterable = personservice.getAllPersons();
+		logger.info("req next Get endpoint MedicalRecord");
 		return personIterable;
 
 	}
