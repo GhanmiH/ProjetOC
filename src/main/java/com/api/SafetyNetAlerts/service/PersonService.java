@@ -28,7 +28,7 @@ public class PersonService {
 		try {
 			return personRepository.findAll();
 		} catch (Exception exception) {
-
+			logger.error("Error while getting a list of medical records  : " + exception.getMessage() + " Stack Trace + " + exception.getStackTrace());
 			return null;
 		}
 	}

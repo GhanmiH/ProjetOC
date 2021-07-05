@@ -57,14 +57,18 @@ public class FireStationController {
 
 	}
 	 @PutMapping("/firestation")
-	    public FireStation updateFireStation(@RequestBody FireStation  firestation) throws Exception {
-	        logger.info("req Put endpoint 'firestation'");
+	    public FireStation updateFireStation(@RequestBody FireStation fireStation) throws Exception
+	    {
+	        logger.info("rep put endpoint firestation");
 
-	        FireStation updatedFireStation = firestationservice.updateFireStation(firestation);
-	        if (updatedFireStation != null) {
-	            logger.info("req next Put endpoint 'firestation' ");
+	        FireStation updatedFireStation = firestationservice.updateFireStation(fireStation);
+	        if (updatedFireStation!=null )
+	        {
+	            logger.info("response Put endpoint firestation");
 	            return updatedFireStation;
-	        } else {
+	        }
+	        else
+	        {
 	            throw new Exception("firestation.update.error");
 	        }
 	    }

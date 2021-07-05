@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.MedicalRecordRepository;
+import com.api.SafetyNetAlerts.repository.PersonRepository;
 
 
 
@@ -17,23 +18,17 @@ public class MedicalRecordService {
 	private static final Logger logger = LogManager.getLogger(MedicalRecordService.class);
 
 	@Autowired
-    private MedicalRecordRepository medicalrecordrepository;
-
-	public Iterable<MedicalRecord> getMedicalRecord() {
-		try {
-		return medicalrecordrepository.findAll();
-		 } catch (Exception exception) {
-	            logger.error("Error while getting list of person : " + exception.getMessage() + " Stack Trace + " + exception.getStackTrace());
-		return null;
-	}
-	}
-
+	private MedicalRecordRepository medicalRecordRepository;
 	 /**
      * Returns all of the existing medical record
      *
      */
-	public Iterable<MedicalRecord> getAllMedicalRecord() {
-		
-		return null;
+	public Iterable<MedicalRecord> getAllMedicalRecords() {
+		try {
+			return medicalRecordRepository.findAll();
+		} catch (Exception exception) {
+			logger.error("Error while getting a list of medical records  : " + exception.getMessage() + " Stack Trace + " + exception.getStackTrace());
+			return null;
+		}
 	}
 }

@@ -21,12 +21,11 @@ public class MedicalRecordController {
 	    private MedicalRecordService medicalrecordservice;
 	 
 	 @GetMapping("/medicalrecords")
-	    public Iterable<MedicalRecord> getAllMedicalRecord() {
-	        logger.info("req Get endpoint 'person'");
+	    public Iterable<MedicalRecord> getAllMedicalRecords(){
 
-	        Iterable<MedicalRecord> medicalrecordIterable = medicalrecordservice.getAllMedicalRecord();
-	        logger.info("response Put endpoint 'person'");
-
-	        return medicalrecordIterable;
+	        logger.info("req Get endpoint MedicalRecords");
+	        Iterable<MedicalRecord> medicalRecordsIterable = medicalrecordservice.getAllMedicalRecords();
+	        logger.info("req next Get endpoint MedicalRecords");
+	        return medicalRecordsIterable;
 	    }
 }
