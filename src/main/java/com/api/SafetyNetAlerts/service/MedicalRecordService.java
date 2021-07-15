@@ -18,8 +18,7 @@ public class MedicalRecordService {
 	private static final Logger logger = LogManager.getLogger(MedicalRecordService.class);
 
 	@Autowired
-	private MedicalRecordRepository medicalRecordRepository;
-
+	private static MedicalRecordRepository medicalRecordRepository;
 	/**
 	 * Returns all of the existing medical record
 	 *
@@ -33,7 +32,7 @@ public class MedicalRecordService {
 			return null;
 		}
 	}
-
+	
 	/**
 	 * add a medical record
 	 * 
@@ -118,6 +117,10 @@ public class MedicalRecordService {
      */
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
             medicalRecordRepository.deleteMedicalRecordsByFirstNameAndLastName(medicalRecord.getFirstName(), medicalRecord.getLastName());
+    }
+
+    public static MedicalRecord getMedicalRecordFromLastNameAndFirstName(String lastName, String firstName) {
+        return medicalRecordRepository.findMedicalRecordByLastNameAndFirstName(lastName, firstName);
     }
 
 }

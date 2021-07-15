@@ -23,12 +23,12 @@ INSERT INTO fire_station (address,station) VALUES ('1509 Culver St',3),
   First_name VARCHAR(250) NOT NULL,
   last_name VARCHAR(250) NOT NULL,
   Birthdate Date NOT NULL,
-  Allergies  VARCHAR(250),
-  Medications VARCHAR(250)
+  Medications  VARCHAR(250),
+  Allergies VARCHAR(250)
   );
   
   
-  INSERT INTO medical_record (First_name, Last_name, Birthdate, Allergies, Medications) VALUES
+  INSERT INTO medical_record (First_name, Last_name, Birthdate, Medications, Allergies) VALUES
      ( 'John','Boyd','1984-03-06','[aznol:350mg, hydrapermazol:100mg]', '[nillacilan]' ),
         ( 'Jacob','Boyd','1989-03-06','[pharmacol:5000mg, terazine:10mg, noznazol:250mg]', '[]' ),
         ( 'Tenley','Boyd','2012-02-18','[]', '[peanut]' ),
@@ -92,4 +92,4 @@ INSERT INTO fire_station (address,station) VALUES ('1509 Culver St',3),
         ('Eric', 'Cadigan', '951 LoneTree Rd', 'Culver', 97451, '841-874-7458', 'gramps@email.com' );
         
        
-        
+       

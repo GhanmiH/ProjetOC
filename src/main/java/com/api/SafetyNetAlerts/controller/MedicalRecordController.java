@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.SafetyNetAlerts.model.MedicalRecord;
+
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
 
 @RestController
@@ -32,6 +34,12 @@ public class MedicalRecordController {
 		logger.info("req next Get endpoint MedicalRecord");
 		return medicalRecordsIterable;
 	}
+	
+	 @GetMapping("/medicalRecord/{lastName}/{firstName}")
+	    public MedicalRecord getMedicalRecordFromLastNameAndFirstName(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
+	        logger.info("requête GET sur le endpoint /medicalRecord avec les paramètres lastName: " + lastName + " et firstName: " + firstName);
+	        return medicalrecordservice.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
+	    }
 
 	@PostMapping("/medicalRecord")
 	public MedicalRecord addMedicalRecord(@Validated @RequestBody MedicalRecord medicalRecord) throws Exception {

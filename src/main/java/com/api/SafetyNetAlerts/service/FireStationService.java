@@ -1,6 +1,6 @@
 package com.api.SafetyNetAlerts.service;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.api.SafetyNetAlerts.model.FireStation;
-import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.FireStationRepository;
 
 @Service
@@ -71,25 +70,34 @@ public class FireStationService {
 		return fireStation;
         }
 
-	private Optional<FireStation> getFireStationByAddressIgnoreCase(String address) {
+    private Optional<FireStation> getFireStationByAddressIgnoreCase(String address) {
 		try {
 			return firestationrepository.findByAddressAllIgnoreCase(address);
 		} catch (Exception exception) {
-			logger.error("Error while getting a person: " + exception.getMessage() + " Stack Trace + "
+			logger.error("Error while getting a firestation: " + exception.getMessage() + " Stack Trace + "
 					+ exception.getStackTrace());
 			return null;
 		}
 	}
+
 	/**
 	 * delete one person if exist
 	 * 
 	 * @param person to delete
-	 * @return 
+	 * @return
 	 * @return
 	 */
 	public FireStation deleteFirestation(FireStation firestation) {
-		   firestationrepository.removeByAddressAndStation(firestation.getAddress(), firestation.getStation());
-		   return firestation;
+		firestationrepository.removeByAddressAndStation(firestation.getAddress(), firestation.getStation());
+		return firestation;
 	}
-	
+
+	public boolean updateAddressForFireStation(Map<String, String> mappingToUpdate) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	  public Iterable<FireStation> getFirestationsFromStationNumber(String station) {
+	        return firestationrepository.findAllByStation(station);
+	    }
 }

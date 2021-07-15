@@ -2,7 +2,7 @@ package com.api.SafetyNetAlerts.model;
 
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -24,6 +24,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "Medical_Record")
 public class MedicalRecord {
@@ -45,21 +48,21 @@ public class MedicalRecord {
 	@Column(name = "Last_name")
 	private String lastName;
 
-	@JsonProperty("birthdate")
+	/*@JsonProperty("birthdate")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
-	@JsonSerialize(using = LocalDateSerializer.class)
-	private LocalDate birthdate;
+	@JsonSerialize(using = LocalDateSerializer.class)*/
+	private String birthdate;
 	
 	@ElementCollection
 	@Column(name = "Allergies")
-	private List<String> allergies;
+	 private List<String> allergies = new ArrayList<>();
 
 	@ElementCollection
 	@Column(name = "Medications")
-	private List<String> medications;
+	 private List<String> medications = new ArrayList<>();
 
-	public MedicalRecord(Long id, String firstName, String lastName, LocalDate birthdate, List<String> allergies,
+	public MedicalRecord(Long id, String firstName, String lastName, String birthdate, List<String> allergies,
 			List<String> medications) throws ParseException {
 
 		this.id = id;
@@ -86,11 +89,11 @@ public class MedicalRecord {
 		this.lastName = lastName;
 	}
 
-	public void setBirthdate(LocalDate birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 
-	public LocalDate getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 

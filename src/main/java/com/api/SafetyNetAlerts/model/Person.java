@@ -1,7 +1,5 @@
 package com.api.SafetyNetAlerts.model;
 
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +10,12 @@ import javax.persistence.Table;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import lombok.Getter;
+import lombok.Setter;
 
 
+@Getter
+@Setter
 @Entity
 @Table (name = "Person")
 public class Person {
@@ -38,7 +40,7 @@ public class Person {
 	private String city;
 
 	@Column(name = "Zip")
-	private int zip;
+	private String zip;
 	
 	@Column(name = "Phone")
 	private String phone;
@@ -46,7 +48,7 @@ public class Person {
 	@Column(name = "Email")
 	private String email;
 
-	public Person(int id, String firstName, String lastName, String address, String city, int zip, String phone,
+	public Person(int id, String firstName, String lastName, String address, String city, String zip, String phone,
 			String email) {
 		this.id = id;
 		this.firstName = firstName;
@@ -101,12 +103,12 @@ public class Person {
 		this.city = city;
 	}
 
-	public int getZip() {
+	public String getZip() {
 		return zip;
 	}
 
-	public void setZip(int zip) {
-		this.zip = zip;
+	public void setZip(String string) {
+		this.zip = string;
 	}
 
 	public String getEmail() {

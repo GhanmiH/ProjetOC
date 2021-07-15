@@ -1,5 +1,6 @@
 package com.api.SafetyNetAlerts.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -16,5 +17,9 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 	void removeByFirstNameAndLastName(String firstName, String lastName);
 
 	Optional<Person> findByFirstNameAndLastNameAllIgnoreCase(String firstname, String lastname);
+
+	List<Person> findAllByLastNameAllIgnoreCase(String lastName);
+
+	Iterable<Person> findPersonByAddress(String address);
 
 }
