@@ -13,7 +13,7 @@ import com.api.SafetyNetAlerts.model.MedicalRecord;
 @Repository
 public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, Long> {
 
-	Optional<MedicalRecord> findByFirstNameAndLastName(String firstname, String lastname);
+	MedicalRecord findByFirstNameAndLastName(String firstname, String lastname);
 
 	void deleteMedicalRecordsByFirstNameAndLastName(String firstName, String lastName);
 

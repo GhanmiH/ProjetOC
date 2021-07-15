@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.SafetyNetAlerts.model.MedicalRecord;
-
+import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
 
 @RestController
@@ -35,12 +35,12 @@ public class MedicalRecordController {
 		return medicalRecordsIterable;
 	}
 	
-	 @GetMapping("/medicalRecord/{lastName}/{firstName}")
-	    public MedicalRecord getMedicalRecordFromLastNameAndFirstName(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-	        logger.info("requête GET sur le endpoint /medicalRecord avec les paramètres lastName: " + lastName + " et firstName: " + firstName);
-	        return medicalrecordservice.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
-	    }
-
+	
+	@GetMapping("/medicalRecord/{lastName}/{firstName}")
+    public MedicalRecord getMedicalRecordFromLastNameAndFirstName(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
+        logger.info("requête GET sur le endpoint /medicalRecord avec les paramètres lastName: " + lastName + " et firstName: " + firstName);
+        return MedicalRecordService.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
+    }
 	@PostMapping("/medicalRecord")
 	public MedicalRecord addMedicalRecord(@Validated @RequestBody MedicalRecord medicalRecord) throws Exception {
 		logger.info("req Post endpoint MedicalRecords");
@@ -48,7 +48,7 @@ public class MedicalRecordController {
 		MedicalRecord createdMedicalRecord = medicalrecordservice.addMedicalRecord(medicalRecord);
 
 		if (createdMedicalRecord != null) {
-			logger.info("req Post endpoint MedicalRecords sent");
+			logger.info("req Post endpoint MedicalRecord sent");
 			return createdMedicalRecord;
 		} else {
 			throw new Exception("medicalRecord.insert.error");

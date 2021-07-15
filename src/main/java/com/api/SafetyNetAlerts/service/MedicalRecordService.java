@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.MedicalRecordRepository;
+import com.api.SafetyNetAlerts.repository.PersonRepository;
 
 
 @Service
@@ -32,6 +33,7 @@ public class MedicalRecordService {
 			return null;
 		}
 	}
+
 	
 	/**
 	 * add a medical record
@@ -67,7 +69,7 @@ public class MedicalRecordService {
 	 */
 	public Optional<MedicalRecord> getMedicalRecordByFirstNameAndLastName(String firstname, String lastname) {
 		try {
-			return medicalRecordRepository.findByFirstNameAndLastName(firstname, lastname);
+			return Optional.empty();
 		} catch (Exception exception) {
 			logger.error("Error while getting a list of medical records  : " + exception.getMessage()
 					+ " Stack Trace + " + exception.getStackTrace());
@@ -120,7 +122,13 @@ public class MedicalRecordService {
     }
 
     public static MedicalRecord getMedicalRecordFromLastNameAndFirstName(String lastName, String firstName) {
-        return medicalRecordRepository.findMedicalRecordByLastNameAndFirstName(lastName, firstName);
-    }
-
+        
+    	try{
+    		return medicalRecordRepository.findMedicalRecordByLastNameAndFirstName(lastName, firstName);
+    	} catch (Exception exception) {
+    		logger.error("Error while getting a person: " + exception.getMessage() + " Stack Trace + "
+					+ exception.getStackTrace());
+			return null;
+		}
+	}
 }
