@@ -22,6 +22,7 @@ public class FireStationPeopleService {
     PersonService personService;
     
 	private static final Logger logger = LogManager.getLogger(FireStationPeopleService.class);
+
 	
 	  /**
      *retrieves the list of people attached to a barracks and counts adults and children
@@ -29,7 +30,7 @@ public class FireStationPeopleService {
      * @return a list including the count of adults and children as well as surnames first names, address and telephone number of each
      */
 
-    public FireStationPeopleList getPeopleFromFirestationNumber(String stationNumber) {
+/*   public FireStationPeopleList getPeopleFromFirestationNumber(String stationNumber) {
 
         List<FirestationPeople> firestationPeopleList = new ArrayList<>();
         FireStationPeopleList firestationPeopleList2 = new FireStationPeopleList();
@@ -66,5 +67,5 @@ public class FireStationPeopleService {
         return firestationPeopleList2;
 
 
-    }
+    }*/
 }

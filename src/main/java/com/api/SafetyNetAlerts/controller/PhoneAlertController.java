@@ -18,10 +18,10 @@ public class PhoneAlertController {
 
 	@Autowired
 	PhoneAlertService phoneAlertService;
-
+/*
 	@GetMapping("/phoneAlert/{firestationNumber}")
 	public List<?> phoneAlert(@PathParam("firestation") String firestationNumber) {
 		logger.info("requête sur le endpoint /phoneAlert{firestationNumber} avec le paramètre firestation: " + firestationNumber);
 		return phoneAlertService.phoneAlert(firestationNumber);
-	}
+	}*/
 }

@@ -21,7 +21,7 @@ public class PhoneAlertService {
     @Autowired
     PersonService personService;
 
-public List<String> phoneAlert(String firestationNumber) {
+/*public List<String> phoneAlert(String firestationNumber) {
     Iterable<FireStation> firestations = firestationService.getFirestationsFromStationNumber(firestationNumber);
     List<String> phoneList = new ArrayList<String>();
         for (FireStation firestation2: firestations
@@ -40,5 +40,5 @@ public List<String> phoneAlert(String firestationNumber) {
         logger.info("réponse en retour à la requête sur le endpoint /phoneAlert avec paramètre firestation: " + firestationNumber);
         return phoneList;
 
-    }
+    }*/
 }

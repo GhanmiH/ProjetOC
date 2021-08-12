@@ -1,6 +1,5 @@
 package com.api.SafetyNetAlerts.service;
 
-import java.util.Map;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +10,10 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.repository.FireStationRepository;
 
+import lombok.Data;
+
+
+@Data
 @Service
 public class FireStationService {
 
@@ -92,11 +95,7 @@ public class FireStationService {
 		return firestation;
 	}
 
-	public boolean updateAddressForFireStation(Map<String, String> mappingToUpdate) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	
 	  public Iterable<FireStation> getFirestationsFromStationNumber(String station) {
 	        return firestationrepository.findAllByStation(station);
 	    }

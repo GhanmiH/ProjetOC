@@ -1,10 +1,6 @@
 package com.api.SafetyNetAlerts.controller;
 
-import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.core.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.service.FireStationService;
-import com.sun.istack.NotNull;
+
 
 @RestController
 public class FireStationController {
@@ -51,22 +47,17 @@ public class FireStationController {
 	}
 
 	 @PutMapping("/firestation")
-	    public void updateAddressForFireStation(
-	            @NotNull @RequestBody final Map<String, String> mappingToUpdate,
-	            final HttpServletResponse response) {
+		public FireStation  updateAddressForFireStation(@RequestBody FireStation firestation) throws Exception {
+			logger.info("req Put endpoint 'firestation'");
 
-	        boolean isUpdated = firestationservice.updateAddressForFireStation(mappingToUpdate);
-
-	        if (isUpdated) {
-	            logger.info("OK 200 - UpdateFireStation PUT request " + "-  FireStation number : {}, Address : {}",
-	                    mappingToUpdate.get("station"),
-	                    mappingToUpdate.get("address"));
-	            response.setStatus(Constants.MAJOR_VERSION);
-	        } else {
-	            response.setStatus(Constants.MINOR_VERSION);
-	        }
-	    }
-
+			FireStation updatedFirestation = firestationservice.updateFireStation(firestation);
+			if (updatedFirestation != null) {
+				logger.info("req next Put endpoint 'firestation' ");
+				return updatedFirestation;
+			} else {
+				throw new Exception("firestation.update.error");
+			}
+		}
 	@DeleteMapping("/firestation")
 	@Transactional
 	public void deleteFireStation(@RequestBody FireStation firestation) {

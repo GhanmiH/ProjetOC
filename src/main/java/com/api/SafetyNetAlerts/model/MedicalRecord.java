@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.sql.Update;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.sun.istack.NotNull;
 
 import lombok.Data;
 
@@ -31,16 +33,13 @@ import lombok.Data;
 @Table(name = "Medical_Record")
 public class MedicalRecord {
 
-	public MedicalRecord() {
-
-	}
-
+	
 	private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long id;
+	private int id;
 
 	@Column(name = "First_name")
 	private String firstName;
@@ -48,6 +47,7 @@ public class MedicalRecord {
 	@Column(name = "Last_name")
 	private String lastName;
 
+	
 	/*@JsonProperty("birthdate")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
@@ -61,16 +61,27 @@ public class MedicalRecord {
 	@ElementCollection
 	@Column(name = "Medications")
 	 private List<String> medications = new ArrayList<>();
-
-	public MedicalRecord(Long id, String firstName, String lastName, String birthdate, List<String> allergies,
+	 
+	public MedicalRecord(String firstName, String lastName, String birthdate, List<String> allergies,
 			List<String> medications) throws ParseException {
 
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthdate = birthdate;
 		this.allergies = allergies;
 		this.medications = medications;
+	}
+	 
+	public MedicalRecord() {
+
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {

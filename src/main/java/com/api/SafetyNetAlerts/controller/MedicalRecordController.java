@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.SafetyNetAlerts.model.MedicalRecord;
-import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
 
 @RestController
@@ -26,7 +24,7 @@ public class MedicalRecordController {
 	@Autowired
 	private MedicalRecordService medicalrecordservice;
 
-	@GetMapping("/medicalrecords")
+	@GetMapping("/medicalRecord")
 	public Iterable<MedicalRecord> getAllMedicalRecord() {
 
 		logger.info("req Get endpoint MedicalRecord");
@@ -34,13 +32,13 @@ public class MedicalRecordController {
 		logger.info("req next Get endpoint MedicalRecord");
 		return medicalRecordsIterable;
 	}
-	
-	
-	@GetMapping("/medicalRecord/{lastName}/{firstName}")
-    public MedicalRecord getMedicalRecordFromLastNameAndFirstName(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-        logger.info("requête GET sur le endpoint /medicalRecord avec les paramètres lastName: " + lastName + " et firstName: " + firstName);
-        return MedicalRecordService.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
-    }
+	@GetMapping("/medicalRecords")
+	public Iterable<MedicalRecord> getAllergiesByMedicalRecordId() {
+		logger.info("req Get endpoint MedicalRecord");
+		Iterable<MedicalRecord> medicalRecordsIterable = medicalrecordservice.getAllergiesByMedicalRecordId();
+		logger.info("req next Get endpoint MedicalRecord");
+		return medicalRecordsIterable;
+	}
 	@PostMapping("/medicalRecord")
 	public MedicalRecord addMedicalRecord(@Validated @RequestBody MedicalRecord medicalRecord) throws Exception {
 		logger.info("req Post endpoint MedicalRecords");
@@ -55,24 +53,24 @@ public class MedicalRecordController {
 
 		}
 	}
-	
-	@PutMapping("/medicalRecord")
-    public MedicalRecord updateMedicalRecord(@RequestBody MedicalRecord medicalRecord) throws Exception {
-        logger.info("req Put  endpoint 'medicalrecord'");
 
-        MedicalRecord updatedMedicalRecord = medicalrecordservice.updateMedicalRecord(medicalRecord);
-        if (updatedMedicalRecord != null) {
-            logger.info("req Put  endpoint medicalrecord sent");
-            return updatedMedicalRecord;
-        } else {
-            throw new Exception("medicalRecord.update.error");
-        }
-    }
-	
-	 @DeleteMapping("/medicalRecord")
-	    @Transactional
-	    public void deleteMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
-	        logger.info("req Delete  endpoint medicalrecord");
-	        medicalrecordservice.deleteMedicalRecord(medicalRecord);
-	    }
+	@PutMapping("/medicalRecord")
+	public MedicalRecord updateMedicalRecord(@RequestBody MedicalRecord medicalRecord) throws Exception {
+		logger.info("req Put  endpoint 'medicalrecord'");
+
+		MedicalRecord updatedMedicalRecord = medicalrecordservice.updateMedicalRecord(medicalRecord);
+		if (updatedMedicalRecord != null) {
+			logger.info("req Put  endpoint medicalrecord sent");
+			return updatedMedicalRecord;
+		} else {
+			throw new Exception("medicalRecord.update.error");
+		}
+	}
+
+	@DeleteMapping("/medicalRecord")
+	@Transactional
+	public void deleteMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
+		logger.info("req Delete  endpoint medicalrecord");
+		medicalrecordservice.deleteMedicalRecord(medicalRecord);
+	}
 }

@@ -25,7 +25,7 @@ public class PersonController {
 	@Autowired
 	private PersonService personservice;
 
-	@GetMapping("/persons")
+	@GetMapping("/person")
 	public Iterable<Person> getAllPersons() {
 		logger.info("req Get endpoint Person");
 		Iterable<Person> personIterable = personservice.getAllPersons();

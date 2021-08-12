@@ -11,8 +11,10 @@ import javax.persistence.Table;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import lombok.Data;
 
 
+@Data
 @Entity
 @Table(name = "Fire_Station")
 public class FireStation {

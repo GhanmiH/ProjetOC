@@ -21,9 +21,9 @@ public class FireStationPeopleController {
 	@Autowired
     FireStationPeopleService firestationPeopleService;
 
-    @GetMapping("/firestationpeople/{stationNumber}")
+    /*@GetMapping("/firestationpeople/{stationNumber}")
     public FireStationPeopleList getPeopleFromFirestationNumber(@PathParam("stationNumber") String stationNumber) {
         logger.info("response in return to the GET request on the endpoint / firestationpeople with the stationNumber parameter: " + stationNumber);
         return firestationPeopleService.getPeopleFromFirestationNumber(stationNumber);
-    }
+    }*/
 }

@@ -27,12 +27,9 @@ public class PersonService {
 	 *
 	 */
 	public Iterable<Person> getAllPersons() {
-		try {
+		
 			return personRepository.findAll();
-		} catch (Exception exception) {
-			logger.error("Error while getting a list of persons : " + exception.getMessage() + " Stack Trace + " + exception.getStackTrace());
-			return null;
-		}
+		
 	}
 
 	/**
@@ -122,15 +119,17 @@ public class PersonService {
 	        return personRepository.findPersonByAddress(address);
 	    }
 
-	  public int getAge(String lastName, String firstName){
-	        MedicalRecord m = MedicalRecordService.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
-	        String birthdate = m.getBirthdate();
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-	        LocalDate dateOfBirth = LocalDate.parse(birthdate, formatter);
-	        LocalDate now = LocalDate.now();
-	        int age = dateOfBirth.until(now).getYears();
-	        logger.debug("calcul de l'âge pour " + firstName + " " + lastName + ": " + age);
-	        return age;
-	    }
+	
 
+/*	public  int getAge(String lastName, String firstName) {
+		MedicalRecord m  = new MedicalRecord();
+       	m = MedicalRecordService.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
+        String birthdate = m.getBirthdate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate dateOfBirth = LocalDate.parse(birthdate, formatter);
+        LocalDate now = LocalDate.now();
+        int age = dateOfBirth.until(now).getYears();
+        logger.debug("calcul de l'âge pour " + firstName + " " + lastName + ": " + age);
+        return age;
+	}*/
 }
