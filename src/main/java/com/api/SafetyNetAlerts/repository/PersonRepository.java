@@ -22,4 +22,6 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
 	Iterable<Person> findPersonByAddress(String address);
 
+	List<Person> findAllByAddressIgnoreCase(String address);
+
 }

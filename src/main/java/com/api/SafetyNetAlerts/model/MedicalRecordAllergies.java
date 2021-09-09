@@ -22,18 +22,18 @@ public class MedicalRecordAllergies {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Integer id;
+	private Integer medical_record_allergies_id;
 
-	@Column(name = "Id_medical_record")
-	private int id_medical_record;
+	@Column(name = "personId")
+	private int personId;
 
 	@Column(name = "Id_allergie")
 	private int id_allergie;
 
 	public MedicalRecordAllergies(Integer medical_record_allergies_id, int id_medical_record, int id_allergie) {
 		
-		this.id = medical_record_allergies_id;
-		this.id_medical_record = id_medical_record;
+		this.medical_record_allergies_id = medical_record_allergies_id;
+		this.personId = id_medical_record;
 		this.id_allergie = id_allergie;
 	}
 
@@ -42,19 +42,19 @@ public class MedicalRecordAllergies {
 	}
 
 	public Integer getMedical_record_allergies_id() {
-		return id;
+		return medical_record_allergies_id;
 	}
 
 	public void setMedical_record_allergies_id(Integer medical_record_allergies_id) {
-		this.id = medical_record_allergies_id;
+		this.medical_record_allergies_id = medical_record_allergies_id;
 	}
 
 	public int getId_medical_record() {
-		return id_medical_record;
+		return personId;
 	}
 
 	public void setId_medical_record(int id_medical_record) {
-		this.id_medical_record = id_medical_record;
+		this.personId = id_medical_record;
 	}
 
 	public int getId_allergie() {
@@ -67,8 +67,8 @@ public class MedicalRecordAllergies {
 
 	@Override
 	public String toString() {
-		return "MedicalRecordAllergies [id=" + id
-				+ ", id_medical_record=" + id_medical_record + ", id_allergie=" + id_allergie + "]";
+		return "MedicalRecordAllergies [medical_record_allergies_id=" + medical_record_allergies_id
+				+ ", id_medical_record=" + personId + ", id_allergie=" + id_allergie + "]";
 	}
 
 	

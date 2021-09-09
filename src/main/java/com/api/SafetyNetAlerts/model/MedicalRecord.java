@@ -1,12 +1,9 @@
 package com.api.SafetyNetAlerts.model;
 
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,64 +13,41 @@ import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.sql.Update;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.sun.istack.NotNull;
 
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "Medical_Record")
+//@Entity
+//@Table(name = "Medical_Record")
 public class MedicalRecord {
 
-	
 	private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column
 	private int id;
 
-	@Column(name = "First_name")
-	private String firstName;
+	//@Column(name = "Personid")
+	private int personId;
 
-	@Column(name = "Last_name")
-	private String lastName;
+	//@Column(name = "Allergies")
+	private List<String> medications;
 
+	//@Column(name = "Medications")
+	private List<String> allergies;
+
+	public MedicalRecord(int id, int personId, List<String> medications, List<String> allergies) {
 	
-	/*@JsonProperty("birthdate")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-	@JsonDeserialize(using = LocalDateDeserializer.class)
-	@JsonSerialize(using = LocalDateSerializer.class)*/
-	private String birthdate;
-	
-	@ElementCollection
-	@Column(name = "Allergies")
-	 private List<String> allergies = new ArrayList<>();
-
-	@ElementCollection
-	@Column(name = "Medications")
-	 private List<String> medications = new ArrayList<>();
-	 
-	public MedicalRecord(String firstName, String lastName, String birthdate, List<String> allergies,
-			List<String> medications) throws ParseException {
-
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthdate = birthdate;
-		this.allergies = allergies;
+		this.id = id;
+		this.personId = personId;
 		this.medications = medications;
+		this.allergies = allergies;
 	}
-	 
-	public MedicalRecord() {
 
+	public MedicalRecord() {
+		
 	}
 
 	public int getId() {
@@ -84,36 +58,12 @@ public class MedicalRecord {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public int getPersonId() {
+		return personId;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public void setBirthdate(String birthdate) {
-		this.birthdate = birthdate;
-	}
-
-	public String getBirthdate() {
-		return birthdate;
-	}
-
-	public List<String> getAllergies() {
-		return allergies;
-	}
-
-	public void setAllergies(List<String> allergies) {
-		this.allergies = allergies;
+	public void setPersonId(int personId) {
+		this.personId = personId;
 	}
 
 	public List<String> getMedications() {
@@ -124,10 +74,17 @@ public class MedicalRecord {
 		this.medications = medications;
 	}
 
-	@Override
-	public String toString() {
-		return "MedicalRecord [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate="
-				+ birthdate + ", allergies=" + allergies + ", medications=" + medications + "]";
+	public List<String> getAllergies() {
+		return allergies;
 	}
 
+	public void setAllergies(List<String> allergies) {
+		this.allergies = allergies;
+	}
+
+	@Override
+	public String toString() {
+		return "MedicalRecord [id=" + id + ", personId=" + personId + ", medications=" + medications + ", allergies="
+				+ allergies + "]";
+	}	
 }

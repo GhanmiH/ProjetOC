@@ -39,7 +39,7 @@ public class MedicalRecordService {
 	 */
 	public MedicalRecord addMedicalRecord(MedicalRecord medicalRecord) {
 		if (medicalRecord != null) {
-			Optional<MedicalRecord> medicalRecordOptional = this.getMedicalRecordByFirstNameAndLastName(medicalRecord.getFirstName(), medicalRecord.getLastName());
+			Optional<MedicalRecord> medicalRecordOptional = this.getMedicalRecordByPersonId(medicalRecord.getPersonId());
 			if (medicalRecordOptional.isPresent()) {
 				logger.error("Error while adding a  exist medical record:");
 				return null;
@@ -60,10 +60,9 @@ public class MedicalRecordService {
 	 * Get medical record by firstName and lastName
 	 * 
 	 * @param firstname
-	 * @param lastname
 	 * @return medical record if found it
 	 */
-	public Optional<MedicalRecord> getMedicalRecordByFirstNameAndLastName(String firstname, String lastname) {
+	public Optional<MedicalRecord> getMedicalRecordByPersonId(int i) {
 		try {
 			return Optional.empty();
 		} catch (Exception exception) {
@@ -80,14 +79,14 @@ public class MedicalRecordService {
      */
     public MedicalRecord updateMedicalRecord( MedicalRecord medicalRecord) {
         if (medicalRecord!=null) {
-            Optional<MedicalRecord> medicalRecordOptional = this.getMedicalRecordByFirstNameAndLastName(medicalRecord.getFirstName(), medicalRecord.getLastName());
+            Optional<MedicalRecord> medicalRecordOptional = this.getMedicalRecordByPersonId(medicalRecord.getPersonId());
 
             if (medicalRecordOptional.isPresent()) {
                 MedicalRecord medicalRecordToUpdate = medicalRecordOptional.get();
 
                 medicalRecordToUpdate.setMedications(medicalRecord.getMedications());
                 medicalRecordToUpdate.setAllergies(medicalRecord.getAllergies());
-                medicalRecordToUpdate.setBirthdate(medicalRecord.getBirthdate());
+                
 
                 try {
                     medicalRecordRepository.save(medicalRecordToUpdate);
@@ -114,13 +113,13 @@ public class MedicalRecordService {
      * @return null in case have a problem
      */
     public void deleteMedicalRecord(MedicalRecord medicalRecord) {
-            medicalRecordRepository.deleteMedicalRecordsByFirstNameAndLastName(medicalRecord.getFirstName(), medicalRecord.getLastName());
+            medicalRecordRepository.deleteMedicalRecordsByPersonId(medicalRecord.getPersonId());
     }
 
-    public  MedicalRecord getMedicalRecordFromLastNameAndFirstName(String lastName, String firstName) {
+    public  MedicalRecord getMedicalRecordFromPerson(String person) {
         
     	try{
-    		return medicalRecordRepository.findMedicalRecordByLastNameAndFirstName(lastName, firstName);
+    		return medicalRecordRepository.findMedicalRecordByPersonId(person);
     	} catch (Exception exception) {
     		logger.error("Error while getting a person: " + exception.getMessage() + " Stack Trace + "
 					+ exception.getStackTrace());
@@ -133,4 +132,5 @@ public class MedicalRecordService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 }

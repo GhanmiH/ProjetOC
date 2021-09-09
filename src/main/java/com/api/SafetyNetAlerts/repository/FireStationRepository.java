@@ -3,6 +3,7 @@ package com.api.SafetyNetAlerts.repository;
 
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ import com.api.SafetyNetAlerts.model.FireStation;
 //This will be AUTO IMPLEMENTED by Spring into a Bean called firestationRepository
 //CRUD refers Create, Read, Update, Delete
 @Repository
-public interface FireStationRepository extends CrudRepository<FireStation, Long> {
+public interface FireStationRepository extends JpaRepository<FireStation, Integer> {
 
 	Optional<FireStation> getFireStationByAddressAndStation(String address, int station);
 

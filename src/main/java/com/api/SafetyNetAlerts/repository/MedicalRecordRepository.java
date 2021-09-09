@@ -13,14 +13,22 @@ import com.api.SafetyNetAlerts.model.MedicalRecord;
 @Repository
 public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, Long> {
 
-	MedicalRecord findByFirstNameAndLastName(String firstname, String lastname);
+	//MedicalRecord findByPersonId(int personId);
 
-	void deleteMedicalRecordsByFirstNameAndLastName(String firstName, String lastName);
+	//void deleteMedicalRecordsByFirstNameAndLastName(String person);
 
-	List<MedicalRecord> findAllByLastNameAllIgnoreCase(String lastName);
+	List<MedicalRecord> findAllByPersonIdAllIgnoreCase(String person);
 
-	MedicalRecord findMedicalRecordByLastNameAndFirstName(String lastName, String firstName);
+	//MedicalRecord findMedicalRecordByLastNameAndFirstName(String person);
 
 	
+
+	void deleteMedicalRecordsByPersonId(int person);
+
+	MedicalRecord findMedicalRecordByPersonId(String person);
+
+	Optional<MedicalRecord> findByFirstNameAndLastNameAllIgnoreCase(String firstName, String lastName);
+
+
 
 }

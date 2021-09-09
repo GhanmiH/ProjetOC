@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Fire_Station")
+
 public class FireStation {
 
 	private static final Logger logger = LogManager.getLogger(FireStation.class);

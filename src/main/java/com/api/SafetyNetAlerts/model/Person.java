@@ -1,5 +1,8 @@
 package com.api.SafetyNetAlerts.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,16 +12,20 @@ import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-
 
 @Data
 @Entity
-@Table (name = "Person")
+@Table(name = "Person")
 public class Person {
 
 	private static final Logger logger = LogManager.getLogger(Person.class);
@@ -26,32 +33,40 @@ public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private int id;
-	
+	private int personId;
+
 	@Column(name = "First_name")
 	private String firstName;
-	
+
 	@Column(name = "Last_name")
 	private String lastName;
-	
+
 	@Column(name = "Address")
 	private String address;
-	
+
 	@Column(name = "City")
 	private String city;
 
 	@Column(name = "Zip")
 	private String zip;
-	
+
 	@Column(name = "Phone")
 	private String phone;
-	
+
 	@Column(name = "Email")
 	private String email;
 
-	public Person(int id, String firstName, String lastName, String address, String city, String zip, String phone,
-			String email) {
-		this.id = id;
+	@Column
+	//@JsonProperty("birthdate")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+	//@JsonDeserialize(using = LocalDateDeserializer.class)
+	//@JsonSerialize(using = LocalDateSerializer.class)*/
+	private LocalDate birthdate;
+
+	public Person(int personId, String firstName, String lastName, String address, String city, String zip, String phone,
+			String email, LocalDate birthdate) {
+		
+		//this.personId = personId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -59,17 +74,19 @@ public class Person {
 		this.zip = zip;
 		this.phone = phone;
 		this.email = email;
+		this.birthdate = birthdate;
 	}
-	
+
 	public Person() {
-	
+
 	}
+
 	public int getid() {
-		return id;
+		return personId;
 	}
 
 	public void setid(int id) {
-		this.id = id;
+		this.personId = id;
 	}
 
 	public String getFirstName() {
@@ -128,13 +145,19 @@ public class Person {
 		this.phone = phone;
 	}
 
-	@Override
-	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
-				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + "]";
+	public LocalDate getBirthdate() {
+		return birthdate;
 	}
 
-	
+	public void setBirthdate(LocalDate birthdate) {
+		this.birthdate = birthdate;
+	}
 
+	@Override
+	public String toString() {
+		return "Person [id=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + ", birthdate="
+				+ birthdate + "]";
+	}
 
 }
