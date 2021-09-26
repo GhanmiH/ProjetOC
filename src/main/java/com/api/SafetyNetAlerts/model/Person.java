@@ -32,8 +32,8 @@ public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private int personId;
+	@Column(name="id")
+	private int id;
 
 	@Column(name = "First_name")
 	private String firstName;
@@ -56,17 +56,12 @@ public class Person {
 	@Column(name = "Email")
 	private String email;
 
-	@Column
-	//@JsonProperty("birthdate")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
-	//@JsonDeserialize(using = LocalDateDeserializer.class)
-	//@JsonSerialize(using = LocalDateSerializer.class)*/
-	private LocalDate birthdate;
+	
 
-	public Person(int personId, String firstName, String lastName, String address, String city, String zip, String phone,
-			String email, LocalDate birthdate) {
+	public Person(int id, String firstName, String lastName, String address, String city, String zip, String phone,
+			String email) {
 		
-		//this.personId = personId;
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -74,19 +69,19 @@ public class Person {
 		this.zip = zip;
 		this.phone = phone;
 		this.email = email;
-		this.birthdate = birthdate;
+		
 	}
 
 	public Person() {
 
 	}
 
-	public int getid() {
-		return personId;
+	public int getId() {
+		return id;
 	}
 
-	public void setid(int id) {
-		this.personId = id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -145,19 +140,10 @@ public class Person {
 		this.phone = phone;
 	}
 
-	public LocalDate getBirthdate() {
-		return birthdate;
-	}
-
-	public void setBirthdate(LocalDate birthdate) {
-		this.birthdate = birthdate;
-	}
-
 	@Override
 	public String toString() {
-		return "Person [id=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
-				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email + ", birthdate="
-				+ birthdate + "]";
+		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+				+ ", city=" + city + ", zip=" + zip + ", phone=" + phone + ", email=" + email +  "]";
 	}
 
 }
