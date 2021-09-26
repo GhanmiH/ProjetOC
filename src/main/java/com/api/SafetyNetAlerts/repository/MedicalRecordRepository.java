@@ -1,0 +1,19 @@
+package com.api.SafetyNetAlerts.repository;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.api.SafetyNetAlerts.model.MedicalRecord;
+
+@Repository
+@Qualifier("medicalrecords")
+public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, Long>{
+
+	void deleteMedicalRecordsByFirstNameAndLastNameAllIgnoreCase(String firstName, String lastName);
+
+	Optional<MedicalRecord> findByFirstNameAndLastNameAllIgnoreCase(String firstname, String lastname);
+
+}

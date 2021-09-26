@@ -58,6 +58,4 @@ public class Allergies {
 		return "Allergies [allergie_id=" + allergie_id + ", allergie=" + allergie + "]";
 	}
 
-
-	
 }

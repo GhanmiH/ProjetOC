@@ -3,6 +3,7 @@ package com.api.SafetyNetAlerts.repository;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -14,8 +15,9 @@ import com.api.SafetyNetAlerts.model.FireStation;
 
 //This will be AUTO IMPLEMENTED by Spring into a Bean called firestationRepository
 //CRUD refers Create, Read, Update, Delete
+@Qualifier("firestations")
 @Repository
-public interface FireStationRepository extends JpaRepository<FireStation, Integer> {
+public interface FireStationRepository extends CrudRepository<FireStation, Integer> {
 
 	Optional<FireStation> getFireStationByAddressAndStation(String address, int station);
 
@@ -24,10 +26,4 @@ public interface FireStationRepository extends JpaRepository<FireStation, Intege
 	void removeByAddressAndStation(String address, int station);
 
 	Iterable<FireStation> findAllByStation(String station);
-
-
-	
-
-	
-	
 }

@@ -127,7 +127,7 @@ public class PersonService {
         LocalDate dateOfBirth = LocalDate.parse(birthdate, formatter);
         LocalDate now = LocalDate.now();
         int age = dateOfBirth.until(now).getYears();
-        logger.debug("calcul de l'âge pour " + firstName + " " + lastName + ": " + age);
+        logger.debug("calcul de l'Ã¢ge pour " + firstName + " " + lastName + ": " + age);
         return age;
 	}*/
 }

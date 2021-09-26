@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,9 +24,9 @@ import java.util.List;
 
 
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
+@Entity
+@Table(name = "MedicalRecord")
 public class MedicalRecord {
 
     private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
@@ -42,9 +43,9 @@ public class MedicalRecord {
     private LocalDate birthdate; 
     
     @ElementCollection
-    private List<String> allergies;
+    private List<Allergies> allergies;
     @ElementCollection
-    private List<String> medications;
+    private List<Medications> medications;
 	public Long getId() {
 		return id;
 	}
@@ -69,24 +70,23 @@ public class MedicalRecord {
 	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
-	public List<String> getAllergies() {
+	public List<Allergies> getAllergies() {
 		return allergies;
 	}
-	public void setAllergies(List<String> allergies) {
+	public void setAllergies(List<Allergies> allergies) {
 		this.allergies = allergies;
 	}
-	public List<String> getMedications() {
+	public List<Medications> getMedications() {
 		return medications;
 	}
-	public void setMedications(List<String> medications) {
+	public void setMedications(List<Medications> medications) {
 		this.medications = medications;
 	}
 	
 	public MedicalRecord() {
 	}
 
-	public MedicalRecord(Long id, String lastName, String firstName, LocalDate birthdate, List<String> allergies,
-			List<String> medications) {
+	public MedicalRecord(Long id, String lastName, String firstName, LocalDate birthdate, List<Allergies> allergies,List<Medications> medications) {
 		
 		this.id = id;
 		this.lastName = lastName;
