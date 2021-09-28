@@ -49,7 +49,7 @@ public class FireStationService {
      *
      * @param fireStation
      * @re4turn null if has a problem when updating
-     * Âµ/*
+     *
      */
     public FireStation updateFireStation(FireStation fireStation) {
         if (fireStation != null) {
@@ -96,7 +96,7 @@ public class FireStationService {
 	}
 
 	
-	  public Iterable<FireStation> getFirestationsFromStationNumber(String station) {
-	        return firestationrepository.findAllByStation(station);
-	    }
+	public Iterable<FireStation> getFirestationsFromStationNumber(String station) {
+        return firestationrepository.findAllByStation(station);
+    }
 }

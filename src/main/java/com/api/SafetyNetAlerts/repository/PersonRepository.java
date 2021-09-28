@@ -31,4 +31,3 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 	
 
 }
-

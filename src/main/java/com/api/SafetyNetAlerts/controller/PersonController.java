@@ -66,4 +66,5 @@ public class PersonController {
 			throw new Exception("person.update.error");
 		}
 	}
+	
 }

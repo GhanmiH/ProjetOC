@@ -31,9 +31,9 @@ public class FireStation {
 	private String address;
 
 	@Column(name = "Station")
-	private int station;
+	private String station;
 
-	public FireStation(String address, int station) {
+	public FireStation(String address, String station) {
 		this.address = address;
 		this.station = station;
 	
@@ -58,11 +58,11 @@ public class FireStation {
 		this.address = address;
 	}
 
-	public int getStation() {
+	public String getStation() {
 		return station;
 	}
 
-	public void setstation(int station) {
+	public void setstation(String station) {
 		this.station = station;
 	}
 

@@ -79,7 +79,7 @@ public class SafetyNetAlertsApplication implements CommandLineRunner {
 			for (int i=0;i<firestations.length();i++){
 				FireStation fireStation = new FireStation();
 				fireStation.setAddress((String) firestations.getJSONObject(i).get("address"));
-				fireStation.setstation(Integer.parseInt((String) firestations.getJSONObject(i).get("station")));
+				fireStation.setstation((String) firestations.getJSONObject(i).get("station"));
 
 				fireStationService.addFirestation(fireStation);
 			}
@@ -104,7 +104,7 @@ public class SafetyNetAlertsApplication implements CommandLineRunner {
 				String firstName = (String)mrJsonArray.getJSONObject(i).get("firstName");
 				String lastName = (String)mrJsonArray.getJSONObject(i).get("lastName");
 				
-				Person person = personService.getPersonByFirstNameAndLastName(firstName, lastName).get();
+				personService.getPersonByFirstNameAndLastName(firstName, lastName).get();
 				medicalRecord.setFirstName(firstName);
 				medicalRecord.setLastName(lastName);
 				medicalRecord.setBirthdate(LocalDate.parse((String)mrJsonArray.getJSONObject(i).get("birthdate"), formatter));
