@@ -26,8 +26,8 @@ public class ChildAlertService {
      */
     public ChildAlertList getChildFromAddress(String address) {
         ChildAlertList childAlertList = new ChildAlertList();
-        List childTransferList = new ArrayList();
-        List adultTransferList = new ArrayList();
+        List<ChildAlert> childTransferList = new ArrayList<ChildAlert>();
+        List<Person> adultTransferList = new ArrayList<Person>();
         Iterable<Person> personList = personService.getPersonFromAddress(address);
         for (Person person : personList
         ) {

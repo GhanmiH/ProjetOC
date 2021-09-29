@@ -1,19 +1,24 @@
 package com.api.SafetyNetAlerts.model;
 
-public class FirestationPeople {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-	private String firstName;
-	private String lastName;
-	private String address;
-	private String phone;
-	public FirestationPeople(String firstName, String lastName, String address, String phone) {
+public class FireStationPeople {
 	
+	private static final Logger logger = LogManager.getLogger(FireStationPeople.class);
+
+	String firstName;
+    String lastName;
+    String address;
+    String phone;
+	public FireStationPeople(String firstName, String lastName, String address, String phone) {
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
 		this.phone = phone;
 	}
-	public FirestationPeople() {
+	public FireStationPeople() {
 		
 	}
 	public String getFirstName() {
@@ -42,8 +47,8 @@ public class FirestationPeople {
 	}
 	@Override
 	public String toString() {
-		return "FirestationPeople [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
+		return "FireStationPeople [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address
 				+ ", phone=" + phone + "]";
 	}
-
+    
 }

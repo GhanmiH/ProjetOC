@@ -28,10 +28,12 @@ public class FireStationController {
 	 */
 
 	@GetMapping("/firestation")
-	public Iterable<FireStation> getFireStations() {
-
-		return firestationservice.getFireStations();
-	}
+    public Iterable<FireStation> getAllStations(){
+        logger.info("req get endpoint firestations  ");
+        Iterable<FireStation> fireStationIterable =  firestationservice.getFireStations();
+        logger.info("req get endpoint firestations done");
+        return fireStationIterable;
+    }
 
 	@PostMapping(value = "/firestation")
 	public FireStation addPerson(@RequestBody FireStation firestation) throws Exception {
