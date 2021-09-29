@@ -16,7 +16,7 @@ public class FireStationPeopleService {
     /*@Autowired
     MedicalRecordService medicalRecordService;*/
 
-    private Logger logger = LogManager.getLogger(FireStationPeopleService.class);
+    private static final Logger logger = LogManager.getLogger(FireStationPeopleService.class);
 
     /**
      * récupère la liste des personnes rattachés à une caserne et compte les adultes et enfants

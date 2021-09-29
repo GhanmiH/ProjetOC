@@ -9,7 +9,7 @@ public class FireStationPeopleController {
 
     
 
-    private Logger logger = LogManager.getLogger(FireStationPeopleController.class);
+	private static final Logger logger = LogManager.getLogger(FireStationPeopleController.class);
 
    
 }
