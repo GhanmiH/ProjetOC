@@ -28,6 +28,8 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
 	Iterable<Person> findAllByCity(String city);
 
+	Person findByLastNameAndFirstName(String lastName, String firstName);
+
 	
 
 }

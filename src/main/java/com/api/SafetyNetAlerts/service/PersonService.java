@@ -1,5 +1,6 @@
 package com.api.SafetyNetAlerts.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.PersonRepository;
 
@@ -17,15 +19,18 @@ public class PersonService {
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+	@Autowired
+	MedicalRecordService medicalrecordservice;
 
 	/**
 	 * Returns all of the existing people
 	 *
 	 */
 	public Iterable<Person> getAllPersons() {
-		
-			return personRepository.findAll();
-		
+
+		return personRepository.findAll();
+
 	}
 
 	/**
@@ -105,14 +110,30 @@ public class PersonService {
 	 * @param person to delete
 	 * @return
 	 */
-	 public Person deletePerson(Person person) {
-         personRepository.removeByFirstNameAndLastName(person.getFirstName(), person.getLastName());
-		
-			return person;
-}
+	public Person deletePerson(Person person) {
+		personRepository.removeByFirstNameAndLastName(person.getFirstName(), person.getLastName());
 
-	 public Iterable<Person> getPersonFromAddress(String address) {
-	        return personRepository.findPersonByAddress(address);
-	    }
-
+		return person;
 	}
+
+	public Iterable<Person> getPersonFromAddress(String address) {
+		return personRepository.findPersonByAddress(address);
+	}
+
+
+	public Person getPersonFromLastNameAndFirstName(String lastName, String firstName) {
+		 return personRepository.findByLastNameAndFirstName(lastName, firstName);
+	}
+
+	public int getAge(String lastName, String firstName) {
+		 MedicalRecord m = medicalrecordservice.getMedicalRecordFromLastNameAndFirstName(lastName, firstName);
+	        LocalDate birthdate = m.getBirthdate();
+	        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+	        //LocalDate dateOfBirth = LocalDate.parse(birthdate, formatter);
+	        LocalDate now = LocalDate.now();
+	        int age = birthdate.until(now).getYears();
+	        logger.debug("calcul de l'âge pour " + firstName + " " + lastName + ": " + age);
+	        return age;
+	    }
+	
+}

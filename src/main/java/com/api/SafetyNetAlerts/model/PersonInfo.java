@@ -15,6 +15,7 @@ public class PersonInfo {
     String email;
     List<Medications> medications;
     List<Allergies> allergies;
+    
 	public PersonInfo(String lastName, String address, int age, String email, List<Medications> medications,
 			List<Allergies> allergies) {
 		

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.FireStationRepository;
-import com.api.SafetyNetAlerts.repository.PersonRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 

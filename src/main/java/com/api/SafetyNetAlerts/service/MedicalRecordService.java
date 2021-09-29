@@ -16,7 +16,7 @@ public class MedicalRecordService {
 	private static final Logger logger = LogManager.getLogger(MedicalRecordService.class);
 
 	@Autowired
-	private MedicalRecordRepository medicalRecordRepository;
+	public MedicalRecordRepository medicalRecordRepository;
 
 	/**
 	 * Returns all of the existing people
@@ -101,4 +101,10 @@ public class MedicalRecordService {
             return null;
         }
     }
+
+	public MedicalRecord getMedicalRecordFromLastNameAndFirstName(String lastName, String firstName) {
+		 return medicalRecordRepository.findMedicalRecordByLastNameAndFirstName(lastName, firstName);
+	}
+
+	
 }
