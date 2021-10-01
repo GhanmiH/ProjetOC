@@ -12,11 +12,10 @@ import com.api.SafetyNetAlerts.service.FireStationService;
 import com.api.SafetyNetAlerts.service.PersonService;
 
 import javax.websocket.server.PathParam;
-import java.util.List;
 
 @RestController
 public class FireController {
-   /* @Autowired
+    @Autowired
     PersonService personService;
     @Autowired
     FireStationService firestationService;
@@ -29,5 +28,5 @@ public class FireController {
     public FireList getPeopleWhenFire(@PathParam("address") String address) {
         logger.info("requête GET sur le endpoint /fire avec le paramètre address: " + address);
         return fireService.getPeopleWhenFire(address);
-    }*/
+    }
 }

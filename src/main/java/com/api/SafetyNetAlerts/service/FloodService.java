@@ -25,7 +25,8 @@ public class FloodService {
 
     private Logger logger = LogManager.getLogger(FloodService.class);
 
-    public List getPeopleWhenFloodFromStationNumber(List<String> stationNumbers) {
+   
+	public List getPeopleWhenFloodFromStationNumber(List<String> stationNumbers) {
 
         List<FloodList> floodLists = new ArrayList<>();
         for (String stationNumber : stationNumbers
@@ -39,8 +40,8 @@ public class FloodService {
                 for (Person person : persons
                 ) {
                     int age = personService.getAge(person.getLastName(), person.getFirstName());
-                    List allergies = medicalRecordService.getMedicalRecordFromLastNameAndFirstName(person.getLastName(), person.getFirstName()).getAllergies();
-                    List medication = medicalRecordService.getMedicalRecordFromLastNameAndFirstName(person.getLastName(), person.getFirstName()).getMedications();
+					List allergies = medicalRecordService.getMedicalRecordFromLastNameAndFirstName(person.getLastName(), person.getFirstName()).getAllergies();
+					List medication = medicalRecordService.getMedicalRecordFromLastNameAndFirstName(person.getLastName(), person.getFirstName()).getMedications();
 
                     FloodPeople floodPeople = new FloodPeople();
                     floodPeople.setLastName(person.getLastName());
