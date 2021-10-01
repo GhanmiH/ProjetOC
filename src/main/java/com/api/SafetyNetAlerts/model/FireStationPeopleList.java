@@ -14,7 +14,7 @@ public class FireStationPeopleList {
     List<FireStationPeople> fireStationPeople;
     
 	public FireStationPeopleList(int child, int adult, List<FireStationPeople> fireStationPeople) {
-		super();
+		
 		this.child = child;
 		this.adult = adult;
 		this.fireStationPeople = fireStationPeople;

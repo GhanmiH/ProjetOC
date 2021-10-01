@@ -25,12 +25,7 @@ public class FireStationPeopleService {
 
     private Logger logger = LogManager.getLogger(FireStationPeopleService.class);
 
-    /**
-     * récupère la liste des personnes rattachés à une caserne et compte les adultes et enfants
-     * @param stationNumber le numéro de la caserne
-     * @return une liste comprenant le décompte des adultes et enfants ainsi que noms prénoms adresse et téléphone de chacun
-     */
-
+    
     public FireStationPeopleList getPeopleFromFirestationNumber(String stationNumber) {
 
         List<FireStationPeople> firestationPeopleList = new ArrayList<>();

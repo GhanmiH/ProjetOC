@@ -21,8 +21,6 @@ public class ChildAlertService {
 
     /**
      * récupère une liste d'enfants habitant à une addresse donnée
-     * @param address l'addresse à partir de laquelle rechercher les enfants
-     * @return childAlertList retourne la liste des enfants avec leur âge ainsi que la liste des autres adultes du foyer
      */
     public ChildAlertList getChildFromAddress(String address) {
         ChildAlertList childAlertList = new ChildAlertList();

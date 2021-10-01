@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.api.SafetyNetAlerts.model.FirePeople;
 import com.api.SafetyNetAlerts.model.FireStation;
 
 
@@ -25,4 +26,6 @@ public interface FireStationRepository extends CrudRepository<FireStation, Integ
 	void removeByAddressAndStation(String address, String string);
 
 	Iterable<FireStation> findAllByStation(String station);
+
+	Iterable<FirePeople> findAllByAddress(String address);
 }

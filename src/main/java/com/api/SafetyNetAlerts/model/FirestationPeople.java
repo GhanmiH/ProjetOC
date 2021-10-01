@@ -12,7 +12,7 @@ public class FireStationPeople {
     String address;
     String phone;
 	public FireStationPeople(String firstName, String lastName, String address, String phone) {
-		super();
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;

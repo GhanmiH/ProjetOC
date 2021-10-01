@@ -14,9 +14,6 @@ import java.util.List;
 
 @Service
 public class PhoneAlertService {
-
-	//@Autowired
-	//private PersonRepository personRepository;
 	
 	@Autowired
 	FireStationService firestationService;
