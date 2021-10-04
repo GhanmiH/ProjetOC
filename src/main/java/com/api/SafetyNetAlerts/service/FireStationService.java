@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.api.SafetyNetAlerts.model.FirePeople;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.repository.FireStationRepository;
 
@@ -102,7 +101,7 @@ public class FireStationService {
         return firestationrepository.findAllByStation(station);
     }
 
-	public Iterable<FirePeople> getFirestationFromAddress(String address) {
+	public Iterable<FireStation> getFirestationFromAddress(String address) {
 		return firestationrepository.findAllByAddress(address);
 	}
 }

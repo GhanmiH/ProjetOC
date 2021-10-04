@@ -18,10 +18,13 @@ public class PersonService {
 	private static final Logger logger = LogManager.getLogger(PersonService.class);
 
 	@Autowired
-	private PersonRepository personRepository;
+	 PersonRepository personRepository;
 	
 	@Autowired
 	MedicalRecordService medicalrecordservice;
+	@Autowired 
+	FireService fireservice;
+	
 
 	/**
 	 * Returns all of the existing people
@@ -116,10 +119,6 @@ public class PersonService {
 		return person;
 	}
 
-	public Iterable<Person> getPersonFromAddress(String address) {
-		return personRepository.findPersonByAddress(address);
-	}
-
 
 	public Person getPersonFromLastNameAndFirstName(String lastName, String firstName) {
 		 return personRepository.findByLastNameAndFirstName(lastName, firstName);
@@ -135,5 +134,9 @@ public class PersonService {
 	        logger.debug("calcul de l'âge pour " + firstName + " " + lastName + ": " + age);
 	        return age;
 	    }
+
+	public Iterable<Person> getPersonFromAddress(String address) {
+		 return personRepository.findPersonByAddress(address);
+	}
 	
 }

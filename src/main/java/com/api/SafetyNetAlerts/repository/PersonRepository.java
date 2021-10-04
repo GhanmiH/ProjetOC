@@ -12,6 +12,8 @@ import com.api.SafetyNetAlerts.model.Person;
 //CRUD refers Create, Read, Update, Delete
 
 @Repository
+
+
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
 	void removeByFirstNameAndLastName(String firstName, String lastName);

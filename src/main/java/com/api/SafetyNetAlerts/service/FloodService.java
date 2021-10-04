@@ -26,7 +26,7 @@ public class FloodService {
     private Logger logger = LogManager.getLogger(FloodService.class);
 
    
-	public List getPeopleWhenFloodFromStationNumber(List<String> stationNumbers) {
+	public List<FloodList> getPeopleWhenFloodFromStationNumber(List<String> stationNumbers) {
 
         List<FloodList> floodLists = new ArrayList<>();
         for (String stationNumber : stationNumbers

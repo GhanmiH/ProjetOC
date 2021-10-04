@@ -1,31 +1,32 @@
 package com.safetynetsalerts.SaftyNetAlerts.ControllerTest;
 
-import static org.hamcrest.CoreMatchers.any;
-
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.api.SafetyNetAlerts.controller.PersonController;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.PersonService;
 
 @SpringBootTest
-//@AutoConfigureMockMvc
+@AutoConfigureMockMvc
 @WebMvcTest(controllers = PersonController.class)
-
+@ActiveProfiles("test")
 public class PersonControllerTest {
 
     @Autowired
@@ -66,12 +67,11 @@ public class PersonControllerTest {
     }
 
     @Test
-    public void testCreatePerson () throws Exception {
-        when(personService.addPerson((Person) any(Person.class))).thenReturn(person);
+    public void testAddPerson () throws Exception {
+        when(personService.addPerson(any(Person.class))).thenReturn(person);
         mockMvc.perform(post("/person")
-               
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(personJson))
                 .andExpect(status().isOk());
-    
     }
 }
