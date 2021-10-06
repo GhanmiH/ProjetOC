@@ -17,7 +17,7 @@ public class FireStationPeopleController {
     @Autowired
     FireStationPeopleService fireStationPeopleService;
 
-    private Logger logger = LogManager.getLogger(FireStationController.class);
+    private Logger logger = LogManager.getLogger(FireStationPeopleController.class);
 
     @GetMapping("/firestations")
     public FireStationPeopleList getPeopleFromFirestationNumber(@PathParam("stationNumber") String stationNumber) {

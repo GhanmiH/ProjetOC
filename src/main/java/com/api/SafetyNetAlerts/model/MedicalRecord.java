@@ -93,4 +93,5 @@ public class MedicalRecord {
 		return "MedicalRecord [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", birthdate="
 				+ birthdate + ", allergies=" + allergies + ", medications=" + medications + "]";
 	}
+	
 }

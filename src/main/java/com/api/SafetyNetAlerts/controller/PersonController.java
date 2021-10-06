@@ -25,14 +25,12 @@ public class PersonController {
 	@Autowired
 	private PersonService personservice;
 
+	
 	@GetMapping("/person")
-	public Iterable<Person> getAllPersons() {
-		logger.info("req Get endpoint Person");
-		Iterable<Person> personIterable = personservice.getAllPersons();
-		logger.info("req next Get endpoint MedicalRecord");
-		return personIterable;
-
-	}
+    public Iterable<Person> getAllPersons(){
+        logger.info("requête GET sur le endpoint /persons");
+        return personservice.getAllPersons();
+    }
 	@PostMapping(value = "/person")
 	public Person addPerson(@RequestBody Person person) throws Exception {
 		logger.info("req Put endpoint 'person'");

@@ -23,7 +23,7 @@ public class PhoneAlertController {
 	}
 
 	@GetMapping("/phoneAlert")
-	public List<?> getphoneAlert(@PathParam("firestation") String firestation) {
+	public List getphoneAlert(@PathParam("firestation") String firestation) {
 		logger.info("requête GET sur le endpoint /phoneAlert avec le paramètre firestation: " + firestation);
 		return phoneAlertService.getphoneAlert(firestation);
 	}

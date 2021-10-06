@@ -21,10 +21,11 @@ public class FireService {
 	MedicalRecordService medicalRecordService;
 	@Autowired
 	FireService fireservice;
+
 	private static final Logger logger = LogManager.getLogger(FireService.class);
 
 	public FireList getPeopleWhenFire(String address) {
-		
+
 		List<FirePeople> firePeopleList = new ArrayList<>();
 		Iterable<Person> persons = personService.getPersonFromAddress(address);
 		for (Person person : persons) {

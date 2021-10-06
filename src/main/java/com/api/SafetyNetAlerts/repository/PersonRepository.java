@@ -3,6 +3,9 @@ package com.api.SafetyNetAlerts.repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +14,9 @@ import com.api.SafetyNetAlerts.model.Person;
 //This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 //CRUD refers Create, Read, Update, Delete
 
+//@Transactional
 @Repository
-
+@Qualifier("person")
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
 

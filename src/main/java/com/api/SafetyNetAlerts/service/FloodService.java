@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.FloodList;
 import com.api.SafetyNetAlerts.model.FloodPeople;
+import com.api.SafetyNetAlerts.model.Medications;
 import com.api.SafetyNetAlerts.model.Person;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class FloodService {
     private Logger logger = LogManager.getLogger(FloodService.class);
 
    
-	public List<FloodList> getPeopleWhenFloodFromStationNumber(List<String> stationNumbers) {
+	public List getPeopleWhenFloodFromStationNumber(List<String> stationNumbers) {
 
         List<FloodList> floodLists = new ArrayList<>();
         for (String stationNumber : stationNumbers

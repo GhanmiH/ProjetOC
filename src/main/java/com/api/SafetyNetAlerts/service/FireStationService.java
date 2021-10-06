@@ -13,7 +13,7 @@ import com.api.SafetyNetAlerts.repository.FireStationRepository;
 import lombok.Data;
 
 
-@Data
+
 @Service
 public class FireStationService {
 
@@ -84,18 +84,6 @@ public class FireStationService {
 		}
 	}
 
-	/**
-	 * delete one person if exist
-	 * 
-	 * @param person to delete
-	 * @return
-	 * @return
-	 */
-	public FireStation deleteFirestation(FireStation firestation) {
-		firestationrepository.removeByAddressAndStation(firestation.getAddress(), firestation.getStation());
-		return firestation;
-	}
-
 	
 	public Iterable<FireStation> getFirestationsFromStationNumber(String station) {
         return firestationrepository.findAllByStation(station);
@@ -103,5 +91,10 @@ public class FireStationService {
 
 	public Iterable<FireStation> getFirestationFromAddress(String address) {
 		return firestationrepository.findAllByAddress(address);
+	}
+
+	public void deleteFirestationByAddress(String address) {
+		 firestationrepository.removeByAddress(address);
+		
 	}
 }
