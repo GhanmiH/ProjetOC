@@ -22,8 +22,7 @@ public class PersonService {
 	
 	@Autowired
 	MedicalRecordService medicalrecordservice;
-	@Autowired 
-	FireService fireservice;
+	
 	
 
 	/**

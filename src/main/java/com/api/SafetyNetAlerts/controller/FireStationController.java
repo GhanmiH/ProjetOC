@@ -37,7 +37,7 @@ public class FireStationController {
     }
 
 	@PostMapping(value = "/firestation")
-	public FireStation addPerson(@RequestBody FireStation firestation) throws Exception {
+	public FireStation addFireStation(@RequestBody FireStation firestation) throws Exception {
 		logger.info("req Put endpoint 'firestations'");
 
 		FireStation updatedFirestation = firestationservice.addFirestation(firestation);
@@ -61,9 +61,11 @@ public class FireStationController {
 				throw new Exception("firestation.update.error");
 			}
 		}
-	 @DeleteMapping("/firestation/address/{address}")
-	    public void deleteFirestationByAddress(@PathVariable("address") String address) {
-	        logger.info("requête DELETE sur le endpoint /firestation/address avec le paramètre address: " + address);
-	        firestationservice.deleteFirestationByAddress(address);
-	    }
+	 @DeleteMapping("/firestation")
+		@Transactional
+		public void deleteFireStation(@RequestBody String firestation) {
+			logger.info("Req Delete  endpoint 'firestation'");
+			firestationservice.deleteFirestationByAddress(firestation);
+
+		}
 }

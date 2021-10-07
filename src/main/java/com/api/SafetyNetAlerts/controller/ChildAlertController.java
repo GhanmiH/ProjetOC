@@ -20,9 +20,8 @@ public class ChildAlertController {
 	private static final Logger logger = LogManager.getLogger(ChildAlertController.class);
 
     @GetMapping("/childAlert")
-    public ChildAlertList childAlert(@PathParam("address") String address) {
+    public ChildAlertList childAlert(@PathParam("address") String address) throws Exception {
         logger.info("requête sur le endpoint /childAlert avec le paramètre address: " + address);
         return childAlertService.getChildFromAddress(address);
-
     }
 }

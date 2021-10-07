@@ -36,7 +36,7 @@ class FireStationControllerTests {
     void init() {
         firestation = new FireStation();
         firestation.setAddress("rue de Paris");
-        firestation.setstation("1");
+        firestation.setStation("1");
 
         firestationJson ="{\n" +
                 "        \"address\": \"rue de Paris\",\n" +

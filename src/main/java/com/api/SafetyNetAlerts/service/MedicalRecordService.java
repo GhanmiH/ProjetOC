@@ -104,7 +104,7 @@ public class MedicalRecordService {
 
 	public MedicalRecord getMedicalRecordFromLastNameAndFirstName(String lastName, String firstName) {
 		 return medicalRecordRepository.findMedicalRecordByLastNameAndFirstName(lastName, firstName);
+		
 	}
-
 	
 }

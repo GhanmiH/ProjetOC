@@ -61,7 +61,7 @@ public class FireStation {
 		return station;
 	}
 
-	public void setstation(String station) {
+	public void setStation(String station) {
 		this.station = station;
 	}
 
@@ -69,4 +69,6 @@ public class FireStation {
 	public String toString() {
 		return "FireStation [id=" + id + ", address=" + address + ", station=" + station + "]";
 	}
+
+	
 }

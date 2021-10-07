@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.PersonService;
 
@@ -29,8 +30,11 @@ public class PersonController {
 	@GetMapping("/person")
     public Iterable<Person> getAllPersons(){
         logger.info("requête GET sur le endpoint /persons");
-        return personservice.getAllPersons();
+        Iterable<Person> personIterable =  personservice.getAllPersons();
+        logger.info("req get endpoint persons done");
+        return personIterable;
     }
+	
 	@PostMapping(value = "/person")
 	public Person addPerson(@RequestBody Person person) throws Exception {
 		logger.info("req Put endpoint 'person'");

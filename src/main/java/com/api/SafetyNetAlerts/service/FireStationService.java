@@ -60,7 +60,7 @@ public class FireStationService {
             	FireStation firestationToUpdate = fireStationOptional.get();
 
             	firestationToUpdate.setAddress(fireStation.getAddress());
-            	firestationToUpdate.setstation(fireStation.getStation());
+            	firestationToUpdate.setStation(fireStation.getStation());
                     try {
                         firestationrepository.save(firestationToUpdate);
                     } catch (Exception exception) {
