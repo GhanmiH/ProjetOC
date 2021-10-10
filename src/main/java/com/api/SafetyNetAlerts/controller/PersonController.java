@@ -3,18 +3,17 @@ package com.api.SafetyNetAlerts.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.PersonService;
 
@@ -26,15 +25,14 @@ public class PersonController {
 	@Autowired
 	private PersonService personservice;
 
-	
 	@GetMapping("/person")
-    public Iterable<Person> getAllPersons(){
-        logger.info("requête GET sur le endpoint /persons");
-        Iterable<Person> personIterable =  personservice.getAllPersons();
-        logger.info("req get endpoint persons done");
-        return personIterable;
-    }
-	
+	public Iterable<Person> getAllPersons() {
+		logger.info("requête GET sur le endpoint /persons");
+		Iterable<Person> personIterable = personservice.getAllPersons();
+		logger.info("req get endpoint persons done");
+		return personIterable;
+	}
+
 	@PostMapping(value = "/person")
 	public Person addPerson(@RequestBody Person person) throws Exception {
 		logger.info("req Put endpoint 'person'");
@@ -47,13 +45,14 @@ public class PersonController {
 			throw new Exception("person.added.error");
 		}
 	}
-	
-	@DeleteMapping("/person")
-	@Transactional
-	public void deletePerson(@RequestBody Person person) {
-		logger.info("Req Delete  endpoint 'person'");
-		personservice.deletePerson(person);
 
+	@DeleteMapping("/person/{lastName}/{firstName}")
+	public void deletePersonFromLastNameAndFirstName(@PathVariable("lastName") String lastName,
+			@PathVariable("firstName") String firstName) {
+		logger.info("requête DELETE sur le endpoint /person avec les paramètres lastName: " + lastName
+				+ " et firstName: " + firstName);
+
+		personservice.deletePersonFromLastNameAndFirstName(lastName, firstName);
 	}
 
 	@PutMapping("/person")
@@ -68,5 +67,5 @@ public class PersonController {
 			throw new Exception("person.update.error");
 		}
 	}
-	
+
 }

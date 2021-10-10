@@ -17,9 +17,6 @@ import lombok.Data;
 @Table(name = "Allergies")
 public class Allergies {
    
-	public Allergies() {
-
-	}
 	
 	private static final Logger logger = LogManager.getLogger(Allergies.class);
 
@@ -30,9 +27,13 @@ public class Allergies {
 
 	@Column(name = "allergie")
 	private String allergie;
+	
+	public Allergies() {
+		
+	}
 
 	public Allergies(int allergie_id, String allergie) {
-		super();
+		
 		this.allergie_id = allergie_id;
 		this.allergie = allergie;
 	}

@@ -10,8 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.api.SafetyNetAlerts.model.Allergies;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.MedicalRecord;
+import com.api.SafetyNetAlerts.model.Medications;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.FireStationService;
 import com.api.SafetyNetAlerts.service.FloodService;
@@ -25,7 +27,7 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
-/*
+
 @SpringBootTest
 class FloodServiceTest {
 
@@ -50,12 +52,18 @@ class FloodServiceTest {
 	        List<Person> persons = new ArrayList<>();
 	        persons.add(person);
 	        MedicalRecord medicalRecord = new MedicalRecord();
-	        medicalRecord.setAllergies(Collections.singletonList("aspirine"));
-	        medicalRecord.setMedications(Collections.singletonList("aspirine"));
+	        List<Allergies> allergiesList = new ArrayList<>();
+	        Allergies allergie1 = new Allergies();
+	        allergiesList.add(allergie1);
+
+	        List<Medications> medicationsList = new ArrayList<>();
+	        Medications medication1 = new Medications();
+	        medicalRecord.setAllergies(allergiesList);
+	        medicalRecord.setMedications(medicationsList);
 	        FireStation firestation = new FireStation();
 	        firestation.setStation("1");
 	        firestation.setAddress("a");
-	        ArrayList<Object> firestations = new ArrayList<>();
+	        List firestations = new ArrayList<>();
 	        firestations.add(firestation);
 	        List<String> stationNumbers = new ArrayList<>();
 	        stationNumbers.add("1");
@@ -76,4 +84,4 @@ class FloodServiceTest {
 	    }
 
 
-}*/
+}

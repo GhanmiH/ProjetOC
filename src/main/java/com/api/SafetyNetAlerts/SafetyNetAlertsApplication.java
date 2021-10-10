@@ -124,7 +124,7 @@ public class SafetyNetAlertsApplication implements CommandLineRunner {
 				mrList.add(medicalRecord);
 
 				medicalRecord.setAllergies(allergies);
-				medicalRecordService.addMedicalRecord(medicalRecord);
+				medicalRecordService.saveMedicalRecord(medicalRecord);
 			}
 		}
 	}

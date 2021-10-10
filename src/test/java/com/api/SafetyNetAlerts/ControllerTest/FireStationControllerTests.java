@@ -72,7 +72,7 @@ class FireStationControllerTests {
     @Test
     public void testDeleteFirestationByAddress() throws Exception {
         when(firestationService.getFirestationFromAddress(anyString())).thenReturn(firestationList);
-        mockMvc.perform(delete("/firestation/address/test"))
+        mockMvc.perform(delete("/firestation/address"))
                 .andExpect(status().isOk());
     }
 

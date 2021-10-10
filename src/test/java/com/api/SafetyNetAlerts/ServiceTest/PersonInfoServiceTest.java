@@ -10,7 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.api.SafetyNetAlerts.model.Allergies;
 import com.api.SafetyNetAlerts.model.MedicalRecord;
+import com.api.SafetyNetAlerts.model.Medications;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.model.PersonInfo;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
@@ -25,7 +27,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-/*
+
 @SpringBootTest
 class PersonInfoServiceTest {
 
@@ -48,9 +50,15 @@ class PersonInfoServiceTest {
         person.setPhone("841-874-7458");
         person.setEmail("gramps@email.com");
         person.setZip("97451");
+        List<Allergies> allergiesList = new ArrayList<>();
+        Allergies allergie1 = new Allergies();
+        allergiesList.add(allergie1);
+
+        List<Medications> medicationsList = new ArrayList<>();
+        Medications medication1 = new Medications();
         MedicalRecord medicalRecord = new MedicalRecord();
-        medicalRecord.setAllergies(Collections.singletonList("aspirine"));
-        medicalRecord.setMedications(Collections.singletonList("aspirine"));
+        medicalRecord.setAllergies(allergiesList);
+        medicalRecord.setMedications(medicationsList);
 
 
         when(personService.getPersonFromLastNameAndFirstName(anyString(), anyString()))
@@ -68,4 +76,4 @@ class PersonInfoServiceTest {
 
     }
 
-}*/
+}

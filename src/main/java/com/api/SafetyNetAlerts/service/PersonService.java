@@ -106,17 +106,9 @@ public class PersonService {
 		}
 	}
 
-	/**
-	 * delete one person if exist
-	 * 
-	 * @param person to delete
-	 * @return
-	 */
-	public Person deletePerson(Person person) {
-		personRepository.removeByFirstNameAndLastName(person.getFirstName(), person.getLastName());
-
-		return person;
-	}
+	public void deletePersonFromLastNameAndFirstName(String lastName, String firstName) {
+        personRepository.deletePersonByLastNameAndFirstName(lastName, firstName);
+    }
 
 
 	public Person getPersonFromLastNameAndFirstName(String lastName, String firstName) {
@@ -137,5 +129,7 @@ public class PersonService {
 	public Iterable<Person> getPersonFromAddress(String address) {
 		 return personRepository.findPersonByAddress(address);
 	}
+
+	
 	
 }

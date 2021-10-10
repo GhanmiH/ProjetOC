@@ -61,11 +61,9 @@ public class FireStationController {
 				throw new Exception("firestation.update.error");
 			}
 		}
-	 @DeleteMapping("/firestation")
-		@Transactional
-		public void deleteFireStation(@RequestBody String firestation) {
-			logger.info("Req Delete  endpoint 'firestation'");
-			firestationservice.deleteFirestationByAddress(firestation);
-
-		}
+	 @DeleteMapping("/firestation/{address}")
+	    public void deleteFirestationByAddress(@PathVariable String address) {
+	        logger.info("requête DELETE sur le endpoint /firestation/address avec le paramètre address: " + address);
+	        firestationservice.deleteFirestationByAddress(address);
+	    }
 }

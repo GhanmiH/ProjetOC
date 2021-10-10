@@ -38,5 +38,24 @@ class MedicalRecordServiceTest {
         medicalRecordService.getMedicalRecordFromLastNameAndFirstName(anyString(), anyString());
         verify(medicalRecordRepository, times(1)).findMedicalRecordByLastNameAndFirstName(anyString(), anyString());
     }
+    @Test
+    public void saveMedicalRecords_ShouldUseMedicalRecordRepository() {
+        List<MedicalRecord> medicalRecords = new ArrayList<>();
+        medicalRecordService.saveMedicalRecords(medicalRecords);
+        verify(medicalRecordRepository, times(1)).saveAll(medicalRecords);
+    }
+    @Test
+    public void saveMedicalRecord_ShouldUseMedicalRecordRepository() {
+        MedicalRecord medicalRecord = new MedicalRecord();
+        medicalRecordService.saveMedicalRecord(medicalRecord);
+        verify(medicalRecordRepository, times(1)).save(medicalRecord);
 
+    }
+   
+    /*@Test
+    public void deleteMedicalRecordByLastNameAndFirstName_ShouldUseMedicalRecordRepository() {
+    	MedicalRecord medicalRecord = new MedicalRecord();
+    	medicalRecordService.deleteMedicalRecord(medicalRecord);
+        verify(medicalRecordRepository, times(1)).deleteMedicalRecordsByFirstNameAndLastNameAllIgnoreCase(anyString(), anyString());
+    }*/
 }

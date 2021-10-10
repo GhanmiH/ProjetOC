@@ -16,10 +16,10 @@ import com.api.SafetyNetAlerts.model.MedicalRecord;
 //@Transactional
 public interface MedicalRecordRepository extends CrudRepository<MedicalRecord, Long>{
 
-	void deleteMedicalRecordsByFirstNameAndLastNameAllIgnoreCase(String firstName, String lastName);
-
 	Optional<MedicalRecord> findByFirstNameAndLastNameAllIgnoreCase(String firstname, String lastname);
 
 	MedicalRecord findMedicalRecordByLastNameAndFirstName(String lastName, String firstName);
+
+	void deleteMedicalRecordsByFirstNameAndLastNameAllIgnoreCase(String firstName, String lastName);
 
 }

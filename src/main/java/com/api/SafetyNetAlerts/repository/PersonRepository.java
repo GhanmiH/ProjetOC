@@ -20,7 +20,7 @@ import com.api.SafetyNetAlerts.model.Person;
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
-	void removeByFirstNameAndLastName(String firstName, String lastName);
+	//void removeByFirstNameAndLastName(String firstName, String lastName);
 
 	Optional<Person> findByFirstNameAndLastNameAllIgnoreCase(String firstname, String lastname);
 
@@ -35,6 +35,10 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 	Iterable<Person> findAllByCity(String city);
 
 	Person findByLastNameAndFirstName(String lastName, String firstName);
+
+	void deletePersonByLastNameAndFirstName(String lastName, String firstName);
+
+	
 
 	
 

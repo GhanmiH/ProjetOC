@@ -16,7 +16,7 @@ import com.api.SafetyNetAlerts.model.FireStation;
 //This will be AUTO IMPLEMENTED by Spring into a Bean called firestationRepository
 //CRUD refers Create, Read, Update, Delete
 
-//@Transactional
+@Transactional
 @Repository
 @Qualifier("firestation")
 public interface FireStationRepository extends CrudRepository<FireStation, Integer> {
@@ -29,6 +29,6 @@ public interface FireStationRepository extends CrudRepository<FireStation, Integ
 
 	Iterable<FireStation> findAllByAddress(String address);
 
-	void removeByAddress(String address);
+	 void deleteByAddress(String address);
 
 }

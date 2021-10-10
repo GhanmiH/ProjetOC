@@ -71,8 +71,7 @@ class FirestationServiceTest {
 	    @Test
 	    public void removeFirestationByAddress_ShouldUseFirestationRepository() {
 	        firestationService.deleteFirestationByAddress(anyString());
-	        verify(firestationRepository, times(1)).removeByAddress(anyString());
+	        verify(firestationRepository, times(1)).deleteByAddress(anyString());
 	    }
-
 	    
 	}

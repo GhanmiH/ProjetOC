@@ -93,8 +93,8 @@ public class FireStationService {
 		return firestationrepository.findAllByAddress(address);
 	}
 
-	public void deleteFirestationByAddress(String address) {
-		 firestationrepository.removeByAddress(address);
-		
-	}
+	 public void deleteFirestationByAddress(String address) {
+		 firestationrepository.deleteByAddress(address);
+	    }
+
 }
