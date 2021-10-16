@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.Allergies;
 import com.api.SafetyNetAlerts.repository.AllergiesRepository;
 
+
 @Service
 public class AllergieService {
 

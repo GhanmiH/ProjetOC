@@ -5,33 +5,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.api.SafetyNetAlerts.model.Allergies;
-import com.api.SafetyNetAlerts.model.FireStation;
+
 import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Medications;
-import com.api.SafetyNetAlerts.service.AllergieService;
-import com.api.SafetyNetAlerts.service.FireStationService;
+import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
-import com.api.SafetyNetAlerts.service.MedicationService;
 
 
 @SpringBootTest
@@ -66,54 +60,57 @@ class MedicalRecordContollerTests {
 
 	        medicalRecord = new MedicalRecord();
 	        medicalRecord.setMedications(medicationsList);
-	        medicalRecord.setBirthdate (LocalDate.parse("01-01-2000", DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+	        medicalRecord.setBirthdate (LocalDate.parse("01/01/2000", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	       
 	        medicalRecord.setAllergies(allergiesList);
 	        medicalRecord.setFirstName("test");
 	        medicalRecord.setLastName("test");
-
 	        medicalRecordList = new ArrayList<>();
 	        medicalRecordList.add(medicalRecord);
-
+	        
 	        medicalRecordJson = "{\n" +
 	                "        \"firstName\": \"Eric\",\n" +
 	                "        \"lastName\": \"Cadigan\",\n" +
-	                "        \"birthdate\": \"01-01-2000\",\n" +
+	                "        \"birthdate\": \"01/01/2000\",\n" +
 	                "        \"allergies\": [\"aznol:350mg\", \"hydrapermazol:100mg\"],\n" +
 	                "        \"medications\": [\"aznol:350mg\", \"hydrapermazol:100mg\"]\n" +
 	                "    }";
+	       
+
 	    }
-    /*
-	    @Test
-	    public void testSaveMedicalRecord() throws Exception {
-	        when(medicalRecordService.saveMedicalRecord(any(MedicalRecord.class))).thenReturn(medicalRecord);
-	        mockMvc.perform(post("/medicalRecord")
-	                .contentType(MediaType.APPLICATION_JSON)
-	                .content(medicalRecordJson))
-	                .andExpect(status().isOk());
-	    }*/
-	   
+
 	    @Test
 	    public void testGetMedicalRecordFromLastNameAndFirstName() throws Exception {
 	        when(medicalRecordService.getMedicalRecordFromLastNameAndFirstName(anyString(), anyString())).thenReturn(medicalRecord);
 	        mockMvc.perform(get("/medicalRecord"))
 	                .andExpect(status().isOk());
 	    }
-	  
+	   
 	    @Test
-	    public void testUpdateMedicalRecordByLastNameAndFirstName() throws Exception {
-	        when(medicalRecordService.updateMedicalRecord((MedicalRecord) any(MedicalRecord.class))).thenReturn(medicalRecord);
-	        mockMvc.perform(put("/firestation")
+	    public void testCreateMedicalRecord() throws Exception {
+	        when(medicalRecordService.saveMedicalRecord((MedicalRecord)any(MedicalRecord.class))).thenReturn(medicalRecord);
+	        mockMvc.perform(post("/medicalRecord")
 	                .contentType(MediaType.APPLICATION_JSON)
 	                .content(medicalRecordJson))
 	                .andExpect(status().isOk());
 	    }
-	   /*
+
+	     @Test
+    public void testUpdateMedicalRecordByLastNameAndFirstName() throws Exception {
+        when(medicalRecordService.getMedicalRecordFromLastNameAndFirstName(anyString(), anyString())).thenReturn(medicalRecord);
+        when(medicalRecordService.saveMedicalRecord((MedicalRecord)any(MedicalRecord.class))).thenReturn(medicalRecord);
+        mockMvc.perform(put("/medicalRecord/test/test")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(medicalRecordJson))
+                .andExpect(status().isOk());
+    }
+
+	  
 	    @Test
-	    public void testDeleteMedicalRecord() throws Exception {
+	    public void testDeleteMedicalRecordByLastNameAndFirstName() throws Exception {
 	        when(medicalRecordService.getMedicalRecordFromLastNameAndFirstName(anyString(), anyString())).thenReturn(medicalRecord);
-	        mockMvc.perform(delete("/medicalRecord"))
+	        mockMvc.perform(delete("/medicalRecord/test/test"))
 	                .andExpect(status().isOk());
 	    }
-	    */
+	   
 }

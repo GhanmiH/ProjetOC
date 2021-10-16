@@ -10,13 +10,10 @@ import javax.persistence.Table;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import lombok.Data;
-
-@Data
 @Entity
 @Table(name = "Allergies")
 public class Allergies {
-   
+	
 	
 	private static final Logger logger = LogManager.getLogger(Allergies.class);
 
@@ -24,10 +21,9 @@ public class Allergies {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private int allergie_id;
-
+	
 	@Column(name = "allergie")
 	private String allergie;
-	
 	public Allergies() {
 		
 	}

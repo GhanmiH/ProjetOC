@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.PersonRepository;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -41,11 +44,6 @@ class PersonServiceTest {
 
 	    @Test
 	    public void getPersons_ShouldUsePersonRepository() {
-	        /*List<Person> persons = new ArrayList<>();
-	        Person p = new Person();
-	        p.setPhone("phone");
-	        persons.add(p);
-	        when(personRepository.findAll()).thenReturn(persons);*/
 	        personService.getAllPersons();
 	        verify(personRepository, times(1)).findAll();
 	    }
@@ -55,10 +53,22 @@ class PersonServiceTest {
 	        personService.getPersonFromLastNameAndFirstName(anyString(), anyString());
 	        verify(personRepository, times(1)).findByLastNameAndFirstName(anyString(), anyString());
 	    }
+	    @Test
+	    public void getPersonByLastNameAndFirstName_ShouldUsePersonRepository() {
+	        personService.getPersonByFirstNameAndLastName(anyString(), anyString());
+	        verify(personRepository, times(1)).findByFirstNameAndLastNameAllIgnoreCase(anyString(), anyString());
+	    }
 
 	    @Test
 	    public void getPersonFromAddress_ShouldUsePersonRepository() {
 	        personService.getPersonFromAddress(anyString());
 	        verify(personRepository, times(1)).findPersonByAddress(anyString());
 	    }
+	    @Test
+	    public void removePersonFromLastNameAndFirstName_ShouldUsePersonRepository() {
+	        personService.deletePersonFromLastNameAndFirstName(anyString(), anyString());
+	        verify(personRepository, times(1)).deletePersonByLastNameAndFirstName(anyString(), anyString());
+	    }
+	
+	
 }

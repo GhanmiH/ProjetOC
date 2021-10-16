@@ -3,13 +3,9 @@ package com.api.SafetyNetAlerts.ServiceTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
-
 import com.api.SafetyNetAlerts.model.Allergies;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.MedicalRecord;
@@ -21,7 +17,6 @@ import com.api.SafetyNetAlerts.service.MedicalRecordService;
 import com.api.SafetyNetAlerts.service.PersonService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -57,7 +52,6 @@ class FloodServiceTest {
 	        allergiesList.add(allergie1);
 
 	        List<Medications> medicationsList = new ArrayList<>();
-	        Medications medication1 = new Medications();
 	        medicalRecord.setAllergies(allergiesList);
 	        medicalRecord.setMedications(medicationsList);
 	        FireStation firestation = new FireStation();
@@ -73,13 +67,12 @@ class FloodServiceTest {
 	        when(personService.getPersonFromAddress(anyString())).thenReturn(persons);
 	        when(medicalRecordService.getMedicalRecordFromLastNameAndFirstName(anyString(), anyString())).thenReturn(medicalRecord);
 
-	        List floodPeople = floodService.getPeopleWhenFloodFromStationNumber(stationNumbers);
+	        List<?> floodPeople = floodService.getPeopleWhenFloodFromStationNumber(stationNumbers);
 
 	        verify(firestationService, times(1)).getFirestationsFromStationNumber(anyString());
 	        verify(personService, times(1)).getAge(anyString(), anyString());
 	        verify(personService, times(1)).getPersonFromAddress(anyString());
 	        verify(medicalRecordService, times(2)).getMedicalRecordFromLastNameAndFirstName(anyString(), anyString());
-
 	        assertEquals(1, floodPeople.size());
 	    }
 

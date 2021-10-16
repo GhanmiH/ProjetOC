@@ -1,33 +1,19 @@
 package com.api.SafetyNetAlerts.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import lombok.Data;
-
-
-@Data
 @Entity
 @Table(name = "Medications")
 public class Medications {
-
-	@ManyToMany(cascade = {
-		        CascadeType.PERSIST, 
-		        CascadeType.MERGE
-		    }
-		)
+	
 	private static final Logger logger = LogManager.getLogger(Medications.class);
 
 	@Id
@@ -66,6 +52,5 @@ public class Medications {
 	public String toString() {
 		return "Medications [id_medication=" + id_medication + ", medication=" + medication + "]";
 	}
-
 	
 }

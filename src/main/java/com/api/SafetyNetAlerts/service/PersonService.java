@@ -130,6 +130,4 @@ public class PersonService {
 		 return personRepository.findPersonByAddress(address);
 	}
 
-	
-	
 }

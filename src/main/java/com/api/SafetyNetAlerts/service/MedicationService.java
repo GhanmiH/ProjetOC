@@ -13,7 +13,7 @@ import com.api.SafetyNetAlerts.repository.MedicationRepository;
 public class MedicationService {
 
 	private static final Logger logger = LogManager.getLogger(MedicationService.class);
-
+	
 	@Autowired
 	private MedicationRepository medicationRepository;
 

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.model.FloodList;
 import com.api.SafetyNetAlerts.model.FloodPeople;
-import com.api.SafetyNetAlerts.model.Medications;
 import com.api.SafetyNetAlerts.model.Person;
 
 import java.util.ArrayList;

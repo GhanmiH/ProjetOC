@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.api.SafetyNetAlerts.model.MedicalRecord;
+import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.repository.MedicalRecordRepository;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
 
@@ -39,23 +40,22 @@ class MedicalRecordServiceTest {
         verify(medicalRecordRepository, times(1)).findMedicalRecordByLastNameAndFirstName(anyString(), anyString());
     }
     @Test
-    public void saveMedicalRecords_ShouldUseMedicalRecordRepository() {
-        List<MedicalRecord> medicalRecords = new ArrayList<>();
-        medicalRecordService.saveMedicalRecords(medicalRecords);
-        verify(medicalRecordRepository, times(1)).saveAll(medicalRecords);
+    public void getAllMedicalRecord_ShouldUseMedicalRecordRepository() {
+        medicalRecordService.getAllMedicalRecords();
+        verify(medicalRecordRepository, times(1)).findAll();
     }
+    
     @Test
-    public void saveMedicalRecord_ShouldUseMedicalRecordRepository() {
+    public void saveMedicalRecord_ShouldUseMedicalRecordRepository() throws Exception  {
         MedicalRecord medicalRecord = new MedicalRecord();
         medicalRecordService.saveMedicalRecord(medicalRecord);
         verify(medicalRecordRepository, times(1)).save(medicalRecord);
 
     }
    
-    /*@Test
+    @Test
     public void deleteMedicalRecordByLastNameAndFirstName_ShouldUseMedicalRecordRepository() {
-    	MedicalRecord medicalRecord = new MedicalRecord();
-    	medicalRecordService.deleteMedicalRecord(medicalRecord);
-        verify(medicalRecordRepository, times(1)).deleteMedicalRecordsByFirstNameAndLastNameAllIgnoreCase(anyString(), anyString());
-    }*/
+        medicalRecordService.deleteMedicalRecordByLastNameAndFirstName(anyString(), anyString());
+        verify(medicalRecordRepository, times(1)).deleteMedicalRecordByLastNameAndFirstName(anyString(), anyString());
+    }
 }

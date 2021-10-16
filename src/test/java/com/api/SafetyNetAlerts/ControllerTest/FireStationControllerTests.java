@@ -61,9 +61,9 @@ class FireStationControllerTests {
                 .andExpect(status().isOk());
     }
     @Test
-    public void testUpdateAddressForFireStation() throws Exception {
-        when(firestationService.updateFireStation((FireStation) any(FireStation.class))).thenReturn(firestation);
-        mockMvc.perform(put("/firestation")
+    public void testUpdateFirestation() throws Exception {
+        when(firestationService.getFirestationFromAddress(anyString())).thenReturn(firestationList);
+        mockMvc.perform(put("/firestation/test")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(firestationJson))
                 .andExpect(status().isOk());

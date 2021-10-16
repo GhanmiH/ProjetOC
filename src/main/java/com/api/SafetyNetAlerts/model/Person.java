@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table(name = "Person")
 public class Person {

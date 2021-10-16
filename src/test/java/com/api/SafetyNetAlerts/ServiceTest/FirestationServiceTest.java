@@ -49,17 +49,23 @@ class FirestationServiceTest {
 	    }
 	    
 	    @Test
+	    public void addFirestation_ShouldUseFirestationRepository() throws Exception {
+	        firestationService.addFirestation(f1);
+	        verify(firestationRepository, times(1)).save(f1);
+	    }
+	    @Test
 	    public void getFirestationFromAddress_ShouldUseFirestationRepository () {
-	        /*when(firestationRepository.findByAddress(any(String.class))).thenReturn(any(Optional.class));
-	        firestationService.getFirestationFromAddress(any(String.class));
-	        verify(firestationRepository, times(1)).findByAddress(any(String.class));*/
-
+	      
 	        when(firestationRepository.findAllByAddress("abc")).thenReturn(firestationList);
 	        firestationService.getFirestationFromAddress("abc");
 	        verify(firestationRepository, times(1)).findAllByAddress("abc");
 
 	    }
-
+	    @Test
+	    public void getFirestations() {
+	        firestationService.getFireStations();
+	        verify(firestationRepository, times(1)).findAll();
+	    }
 	    @Test
 	    public void getFirestationsFromStationNumber_ShouldUseFirestationRepository () {
 	        when(firestationRepository.findAllByStation("1")).thenReturn(firestationList);
@@ -73,5 +79,9 @@ class FirestationServiceTest {
 	        firestationService.deleteFirestationByAddress(anyString());
 	        verify(firestationRepository, times(1)).deleteByAddress(anyString());
 	    }
-	    
+	    @Test
+	    public void deleteNotExistingFirestation_ShouldNotUseFirestationRepository() {
+	        when(firestationService.getFirestationsFromStationNumber("3")).thenReturn(null);
+	        firestationRepository.deleteByAddress("3");
+	    }
 	}
