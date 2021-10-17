@@ -10,6 +10,8 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -21,22 +23,24 @@ public class MedicalRecord {
 
 	private static final Logger logger = LogManager.getLogger(MedicalRecord.class);
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String lastName;
 	private String firstName;
-
+	
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate birthdate;
-
-	 @JsonProperty(value = "allergie") 
+	
+	@JsonProperty(value = "allergie")
 	@ElementCollection
 	private List<Allergies> allergies;
-
-	 @JsonProperty(value = "medication")
+	
+	@JsonProperty(value = "medication")
 	@ElementCollection
 	private List<Medications> medications;
 

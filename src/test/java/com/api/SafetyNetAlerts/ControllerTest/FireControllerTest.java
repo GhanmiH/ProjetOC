@@ -9,7 +9,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.api.SafetyNetAlerts.model.FireList;
+import com.api.SafetyNetAlerts.model.FirePeople;
 import com.api.SafetyNetAlerts.service.FireService;
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -32,4 +35,19 @@ class FireControllerTest {
         mockMvc.perform(get("/fire?address=a"))
                 .andExpect(status().isOk());
     }
+    @Test
+    public void testToString()
+    {
+        ToStringVerifier.forClass(FirePeople.class)
+                      .withClassName(NameStyle.SIMPLE_NAME)
+                      .verify();
+    }
+    @Test
+    public void test2ToString()
+    {
+        ToStringVerifier.forClass(FireList.class)
+                      .withClassName(NameStyle.SIMPLE_NAME)
+                      .verify();
+    }
+    
 }

@@ -1,8 +1,11 @@
 package com.api.SafetyNetAlerts.ControllerTest;
 
-
-
+import com.api.SafetyNetAlerts.model.FireStationPeople;
+import com.api.SafetyNetAlerts.model.FireStationPeopleList;
+import com.api.SafetyNetAlerts.model.Medications;
 import com.api.SafetyNetAlerts.service.PhoneAlertService;
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +37,19 @@ public class PhoneAlertControllerTest {
         mockMvc.perform(get("/phoneAlert?fireStation=1"))
                 .andExpect(status().isOk());
 
+    }
+    @Test
+    public void testToString()
+    {
+        ToStringVerifier.forClass(FireStationPeople.class)
+                      .withClassName(NameStyle.SIMPLE_NAME)
+                      .verify();
+    }
+    @Test
+    public void test2ToString()
+    {
+        ToStringVerifier.forClass(FireStationPeopleList.class)
+                      .withClassName(NameStyle.SIMPLE_NAME)
+                      .verify();
     }
 }

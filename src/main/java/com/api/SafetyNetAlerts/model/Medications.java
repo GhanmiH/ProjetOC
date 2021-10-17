@@ -16,6 +16,7 @@ public class Medications {
 	
 	private static final Logger logger = LogManager.getLogger(Medications.class);
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column

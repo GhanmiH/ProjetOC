@@ -19,6 +19,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.api.SafetyNetAlerts.model.FireStation;
 import com.api.SafetyNetAlerts.service.FireStationService;
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -76,5 +78,12 @@ class FireStationControllerTests {
                 .andExpect(status().isOk());
     }
 
-
+    @Test
+    public void testToString()
+    {
+        ToStringVerifier.forClass(FireStation.class)
+                      .withClassName(NameStyle.SIMPLE_NAME)
+                      .verify();
+    }
+   
 }

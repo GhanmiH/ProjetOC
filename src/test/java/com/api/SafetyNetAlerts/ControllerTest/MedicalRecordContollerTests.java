@@ -1,6 +1,7 @@
 package com.api.SafetyNetAlerts.ControllerTest;
 
 
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.StyleContext.NamedStyle;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -26,7 +29,9 @@ import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Medications;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.MedicalRecordService;
-
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
+import com.sun.xml.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -111,6 +116,13 @@ class MedicalRecordContollerTests {
 	        when(medicalRecordService.getMedicalRecordFromLastNameAndFirstName(anyString(), anyString())).thenReturn(medicalRecord);
 	        mockMvc.perform(delete("/medicalRecord/test/test"))
 	                .andExpect(status().isOk());
+	    }
+	    @Test
+	    public void testToString()
+	    {
+	        ToStringVerifier.forClass(MedicalRecord.class)
+	                      .withClassName(NameStyle.SIMPLE_NAME)
+	                      .verify();
 	    }
 	   
 }

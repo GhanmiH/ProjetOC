@@ -16,8 +16,12 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.api.SafetyNetAlerts.model.MedicalRecord;
 import com.api.SafetyNetAlerts.model.Person;
 import com.api.SafetyNetAlerts.service.PersonService;
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -88,6 +92,13 @@ class PersonControllerTests {
               .andExpect(status().isOk());
   }
   
-
+  @Test
+  public void testToString()
+  {
+      ToStringVerifier.forClass(Person.class)
+                    .withClassName(NameStyle.SIMPLE_NAME)
+                    .verify();
+  }
+ 
   
 }

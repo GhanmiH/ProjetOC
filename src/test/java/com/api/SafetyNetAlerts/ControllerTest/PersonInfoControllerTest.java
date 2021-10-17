@@ -9,6 +9,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.api.SafetyNetAlerts.model.PersonInfo;
 import com.api.SafetyNetAlerts.service.PersonInfoService;
+import com.jparams.verifier.tostring.NameStyle;
+import com.jparams.verifier.tostring.ToStringVerifier;
+
 import static org.mockito.Mockito.eq;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -38,5 +41,11 @@ public class PersonInfoControllerTest {
 	        mockMvc.perform(get("/communityEmail?city=Culver"))
 	                .andExpect(status().isOk());
 	    }
-
+	 @Test
+	    public void testToString()
+	    {
+	        ToStringVerifier.forClass(PersonInfo.class)
+	                      .withClassName(NameStyle.SIMPLE_NAME)
+	                      .verify();
+	    }
 }
